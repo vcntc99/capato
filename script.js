@@ -2,7 +2,7 @@ const usuario = "vcntc99";
 const repo = "capato";
 const carpeta = "image";
 
-const url = `https://api.github.com/repos/${usuario}/${repo}/${carpeta}`;
+const url = `https://api.github.com/repos/${usuario}/${repo}/contents/${carpeta}`;
 
 const galeria = document.getElementById("galeria");
 const modal = document.getElementById("modal");
