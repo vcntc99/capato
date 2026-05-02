@@ -12,8 +12,15 @@ const cerrar = document.getElementById("cerrar");
 fetch(url)
   .then(res => res.json())
   .then(data => {
+    console.log(data); // 👈 IMPORTANTE para ver qué llega
+
+    if (!Array.isArray(data)) {
+      galeria.innerHTML = "Error cargando imágenes";
+      return;
+    }
+
     data.forEach(file => {
-      if (file.type === "file") {
+      if (file.type === "file" && file.download_url) {
         const img = document.createElement("img");
         img.src = file.download_url;
 
@@ -25,6 +32,10 @@ fetch(url)
         galeria.appendChild(img);
       }
     });
+  })
+  .catch(err => {
+    console.error("Error:", err);
+    galeria.innerHTML = "No se pudieron cargar las imágenes";
   });
 
 // cerrar modal
