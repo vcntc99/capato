@@ -14,12 +14,24 @@ fetch(url)
   .then(data => {
     console.log(data); // 👈 IMPORTANTE para ver qué llega
 
-    if (!Array.isArray(data)) {
-      galeria.innerHTML = "Error cargando imágenes";
-      return;
-    }
+ if (!Array.isArray(data)) {
+  galeria.innerHTML = "Error cargando imágenes";
+  return;
+}
 
-    data.forEach(file => {
+// Ordenar las imágenes por el número al inicio del nombre
+data.sort((a, b) => {
+  const numeroA = parseInt(a.name.match(/^\d+/)?.[0] || "999999", 10);
+  const numeroB = parseInt(b.name.match(/^\d+/)?.[0] || "999999", 10);
+
+  if (numeroA !== numeroB) {
+    return numeroA - numeroB;
+  }
+
+  return a.name.localeCompare(b.name);
+});
+
+data.forEach(file => {
       if (file.type === "file" && file.download_url) {
         const img = document.createElement("img");
         img.src = file.download_url;
