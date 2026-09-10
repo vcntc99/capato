@@ -2,58 +2,97 @@
 <html lang="es">
 
 <head>
+
   <meta charset="UTF-8">
+
+  <!-- Importante para que el diseño funcione correctamente
+       en celulares -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Capato - Catálogo de productos</title>
+
   <link rel="stylesheet" href="styles.css">
+
 </head>
+
 
 <body>
 
   <h1>Catálogo de productos</h1>
 
+  <!-- ==================================================
+       GALERÍA DE PRODUCTOS
+       ================================================== -->
+
   <div id="galeria"></div>
 
-  <!-- Ventana de información del producto -->
+
+  <!-- ==================================================
+       VENTANA DE INFORMACIÓN DEL PRODUCTO
+       ================================================== -->
+
   <div id="modal" class="hidden">
 
     <div id="contenidoModal">
 
+      <!-- Botón para cerrar -->
       <span id="cerrar">&times;</span>
 
+
+      <!-- Imagen grande -->
       <img id="imgGrande" src="" alt="">
 
+
+      <!-- Información del producto -->
       <div id="datosProducto">
 
         <h2 id="nombreProducto"></h2>
 
         <p id="descripcionProducto"></p>
 
+
         <p>
           <strong>Precio:</strong>
           <span id="precioProducto"></span>
         </p>
+
 
         <p>
           <strong>Categoría:</strong>
           <span id="categoriaProducto"></span>
         </p>
 
+
         <p>
           <strong>Marca:</strong>
           <span id="marcaProducto"></span>
         </p>
+
 
         <p>
           <strong>Código:</strong>
           <span id="codigoProducto"></span>
         </p>
 
+
+        <!-- ==================================================
+             BOTÓN DE WHATSAPP
+             ================================================== -->
+
+        <button id="whatsappProducto">
+          Preguntar por WhatsApp
+        </button>
+
       </div>
 
     </div>
 
   </div>
+
+
+  <!-- ==================================================
+       JAVASCRIPT
+       ================================================== -->
 
   <script src="script.js"></script>
 
