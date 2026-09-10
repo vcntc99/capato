@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <title>Capato - Galería</title>
+  <title>Capato - Catálogo de productos</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<h1>Catálogo de productos</h1>
+  <h1>Catálogo de productos</h1>
 
-<div id="galeria"></div>
+  <div id="galeria"></div>
 
-<!-- Modal -->
-<div id="modal" class="hidden">
-  <span id="cerrar">&times;</span>
-  <img id="imgGrande">
-</div>
+  <!-- Ventana de información del producto -->
+  <div id="modal" class="hidden">
 
-<script src="script.js"></script>
+    <div id="contenidoModal">
+
+      <span id="cerrar">&times;</span>
+
+      <img id="imgGrande" src="" alt="">
+
+      <div id="datosProducto">
+
+        <h2 id="nombreProducto"></h2>
+
+        <p id="descripcionProducto"></p>
+
+        <p>
+          <strong>Precio:</strong>
+          <span id="precioProducto"></span>
+        </p>
+
+        <p>
+          <strong>Categoría:</strong>
+          <span id="categoriaProducto"></span>
+        </p>
+
+        <p>
+          <strong>Marca:</strong>
+          <span id="marcaProducto"></span>
+        </p>
+
+        <p>
+          <strong>Código:</strong>
+          <span id="codigoProducto"></span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
 </body>
+
 </html>
