@@ -15,20 +15,14 @@ const url =
 // ======================================================
 
 // Escribe aquí el número de WhatsApp que recibirá
-// las consultas de los clientes.
+// las consultas.
 //
-// Formato:
-// México: 52 + número de 10 dígitos
-//
-// SIN:
-// +
-// espacios
-// guiones
+// Formato internacional, sin +, espacios ni guiones.
 //
 // Ejemplo:
 // const telefonoWhatsApp = "525512345678";
 
-const telefonoWhatsApp = "525535000789";
+const telefonoWhatsApp = "52XXXXXXXXXX";
 
 
 // ======================================================
@@ -49,7 +43,6 @@ const imgGrande =
 
 const cerrar =
   document.getElementById("cerrar");
-
 
 const nombreProducto =
   document.getElementById("nombreProducto");
@@ -80,11 +73,10 @@ const whatsappProducto =
 function abrirProducto(producto, imagenUrl) {
 
   // ----------------------------------------------------
-  // Mostrar imagen
+  // Mostrar imagen grande
   // ----------------------------------------------------
 
   imgGrande.src = imagenUrl;
-
   imgGrande.alt = producto.nombre;
 
 
@@ -95,38 +87,36 @@ function abrirProducto(producto, imagenUrl) {
   nombreProducto.textContent =
     producto.nombre;
 
-
   descripcionProducto.textContent =
     producto.descripcion;
-
 
   precioProducto.textContent =
     `$${Number(producto.precio).toFixed(2)}`;
 
-
   categoriaProducto.textContent =
     producto.categoria;
 
-
   marcaProducto.textContent =
     producto.marca;
-
 
   codigoProducto.textContent =
     producto.codigo;
 
 
-  // ----------------------------------------------------
-  // Crear enlace directo al producto
-  // ----------------------------------------------------
+  // ====================================================
+  // CREAR ENLACE DIRECTO AL PRODUCTO
+  // ====================================================
+
+  // El enlace utiliza el nombre del archivo de imagen,
+  // no el código comercial del producto.
 
   const enlaceProducto =
-    `${window.location.origin}${window.location.pathname}?producto=${encodeURIComponent(producto.codigo)}`;
+    `${window.location.origin}${window.location.pathname}?imagen=${encodeURIComponent(producto.imagen)}`;
 
 
-  // ----------------------------------------------------
-  // Configurar botón de WhatsApp
-  // ----------------------------------------------------
+  // ====================================================
+  // CONFIGURAR BOTÓN DE WHATSAPP
+  // ====================================================
 
   whatsappProducto.onclick = () => {
 
@@ -157,7 +147,7 @@ function abrirProducto(producto, imagenUrl) {
 
 
   // ----------------------------------------------------
-  // Abrir ventana
+  // Abrir modal
   // ----------------------------------------------------
 
   modal.classList.remove("hidden");
@@ -207,7 +197,6 @@ fetch("productos.json")
               10
             );
 
-
           const numeroB =
             parseInt(
               b.name.match(/^\d+/)?.[0] || "999999",
@@ -233,15 +222,13 @@ fetch("productos.json")
 
         data.forEach(file => {
 
-          // Solo procesar archivos
           if (
             file.type === "file" &&
             file.download_url
           ) {
 
-            // ----------------------------------------------
-            // Buscar los datos del producto
-            // ----------------------------------------------
+            // Buscar información correspondiente
+            // a esta imagen.
 
             const producto =
               productos.find(
@@ -251,6 +238,7 @@ fetch("productos.json")
 
             // Si no existe información del producto,
             // no mostramos la imagen.
+
             if (!producto) {
 
               return;
@@ -258,9 +246,7 @@ fetch("productos.json")
             }
 
 
-            // ----------------------------------------------
             // Crear imagen
-            // ----------------------------------------------
 
             const img =
               document.createElement("img");
@@ -269,13 +255,12 @@ fetch("productos.json")
             img.src =
               file.download_url;
 
-
             img.alt =
               producto.nombre;
 
 
             // ----------------------------------------------
-            // Cuando hacen clic en la imagen
+            // Al hacer clic en la imagen
             // ----------------------------------------------
 
             img.onclick = () => {
@@ -288,9 +273,7 @@ fetch("productos.json")
             };
 
 
-            // ----------------------------------------------
             // Agregar imagen a la galería
-            // ----------------------------------------------
 
             galeria.appendChild(img);
 
@@ -309,38 +292,49 @@ fetch("productos.json")
           );
 
 
-        const codigoSolicitado =
-          parametros.get("producto");
+        // Obtener el nombre de la imagen desde la URL
+
+        const imagenSolicitada =
+          parametros.get("imagen");
 
 
-        // Si la URL contiene ?producto=...
-        if (codigoSolicitado) {
+        // Si la URL contiene ?imagen=...
 
-          // Buscar producto por código
+        if (imagenSolicitada) {
+
+          // Buscar el producto cuyo campo "imagen"
+          // coincida con el nombre recibido.
+
           const productoSolicitado =
             productos.find(
-              p => p.codigo === codigoSolicitado
+              p => p.imagen === imagenSolicitada
             );
 
 
           // Si encontramos el producto
+
           if (productoSolicitado) {
 
-            // Buscar su imagen
+            // Buscar el archivo correspondiente
+            // dentro de la carpeta image de GitHub.
+
             const archivoImagen =
               data.find(
                 file =>
-                  file.name === productoSolicitado.imagen
+                  file.name ===
+                  productoSolicitado.imagen
               );
 
 
             // Si encontramos la imagen
+
             if (
               archivoImagen &&
               archivoImagen.download_url
             ) {
 
-              // Abrir automáticamente
+              // Abrir automáticamente el producto.
+
               abrirProducto(
                 productoSolicitado,
                 archivoImagen.download_url
@@ -389,7 +383,7 @@ modal.onclick = () => {
 
 
 // ======================================================
-// EVITAR QUE EL CLIC DENTRO DEL MODAL LO CIERRE
+// EVITAR QUE UN CLIC DENTRO DEL MODAL LO CIERRE
 // ======================================================
 
 contenidoModal.onclick = (event) => {
