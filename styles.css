@@ -15,10 +15,13 @@ body {
 
 #galeria {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(220px, 1fr)
-  );
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(220px, 1fr)
+    );
+
   gap: 15px;
 }
 
@@ -29,10 +32,15 @@ body {
 
 #galeria img {
   width: 100%;
+
   border-radius: 10px;
+
   cursor: pointer;
-  transition: transform 0.2s;
+
+  transition:
+    transform 0.2s;
 }
+
 
 #galeria img:hover {
   transform: scale(1.05);
@@ -52,7 +60,8 @@ body {
   width: 100%;
   height: 100%;
 
-  background: rgba(0, 0, 0, 0.8);
+  background:
+    rgba(0, 0, 0, 0.8);
 
   display: flex;
 
@@ -82,6 +91,7 @@ body {
   background: white;
 
   max-width: 1000px;
+
   max-height: 95vh;
 
   padding: 25px;
@@ -90,7 +100,8 @@ body {
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap: 30px;
 
@@ -106,6 +117,7 @@ body {
 
 #imgGrande {
   width: 100%;
+
   max-height: 75vh;
 
   object-fit: contain;
@@ -120,13 +132,16 @@ body {
 
 #datosProducto {
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
 }
 
 
 #nombreProducto {
   margin-top: 0;
+
   font-size: 28px;
 }
 
@@ -138,7 +153,44 @@ body {
 
 #precioProducto {
   font-size: 26px;
+
   font-weight: bold;
+}
+
+
+/* ======================================================
+   BOTÓN DE WHATSAPP
+   ====================================================== */
+
+#whatsappProducto {
+  margin-top: 20px;
+
+  padding: 13px 20px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #25D366;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
+}
+
+
+#whatsappProducto:hover {
+  transform: scale(1.03);
+
+  opacity: 0.9;
 }
 
 
@@ -150,33 +202,54 @@ body {
   position: absolute;
 
   top: 5px;
+
   right: 15px;
 
   font-size: 35px;
 
   cursor: pointer;
 }
+
+
 /* ======================================================
    VISTA PARA CELULARES
    ====================================================== */
 
 @media (max-width: 600px) {
 
-  /* Reducir los márgenes de la página */
+
+  /* ----------------------------------------------
+     Página
+     ---------------------------------------------- */
+
   body {
     margin: 10px;
   }
 
-  /* Una sola columna para la galería */
+
+  /* ----------------------------------------------
+     Galería
+     ---------------------------------------------- */
+
   #galeria {
+
     grid-template-columns: 1fr;
+
     gap: 10px;
+
   }
 
-  /* Modal en formato vertical */
+
+  /* ----------------------------------------------
+     Modal
+     ---------------------------------------------- */
+
   #contenidoModal {
+
     width: 100%;
+
     max-width: 100%;
+
     max-height: 95vh;
 
     padding: 15px;
@@ -186,31 +259,75 @@ body {
     gap: 15px;
 
     overflow-y: auto;
+
   }
 
-  /* Imagen grande */
+
+  /* ----------------------------------------------
+     Imagen grande
+     ---------------------------------------------- */
+
   #imgGrande {
+
     width: 100%;
+
     max-height: 55vh;
+
   }
 
-  /* Información del producto */
+
+  /* ----------------------------------------------
+     Información
+     ---------------------------------------------- */
+
   #datosProducto {
+
     width: 100%;
+
   }
+
 
   #nombreProducto {
+
     font-size: 24px;
+
   }
+
 
   #precioProducto {
+
     font-size: 24px;
+
   }
 
-  /* Botón cerrar */
-  #cerrar {
-    top: 3px;
-    right: 10px;
-    font-size: 30px;
+
+  /* ----------------------------------------------
+     Botón WhatsApp
+     ---------------------------------------------- */
+
+  #whatsappProducto {
+
+    width: 100%;
+
+    padding: 14px 20px;
+
+    font-size: 17px;
+
   }
+
+
+  /* ----------------------------------------------
+     Botón cerrar
+     ---------------------------------------------- */
+
+  #cerrar {
+
+    top: 3px;
+
+    right: 10px;
+
+    font-size: 30px;
+
+  }
+
 }
