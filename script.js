@@ -22,7 +22,7 @@ const url =
 // Ejemplo:
 // const telefonoWhatsApp = "525512345678";
 
-const telefonoWhatsApp = "52XXXXXXXXXX";
+const telefonoWhatsApp = "525535000789";
 
 
 // ======================================================
