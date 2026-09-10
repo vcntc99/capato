@@ -156,3 +156,61 @@ body {
 
   cursor: pointer;
 }
+/* ======================================================
+   VISTA PARA CELULARES
+   ====================================================== */
+
+@media (max-width: 600px) {
+
+  /* Reducir los márgenes de la página */
+  body {
+    margin: 10px;
+  }
+
+  /* Una sola columna para la galería */
+  #galeria {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Modal en formato vertical */
+  #contenidoModal {
+    width: 100%;
+    max-width: 100%;
+    max-height: 95vh;
+
+    padding: 15px;
+
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+
+    overflow-y: auto;
+  }
+
+  /* Imagen grande */
+  #imgGrande {
+    width: 100%;
+    max-height: 55vh;
+  }
+
+  /* Información del producto */
+  #datosProducto {
+    width: 100%;
+  }
+
+  #nombreProducto {
+    font-size: 24px;
+  }
+
+  #precioProducto {
+    font-size: 24px;
+  }
+
+  /* Botón cerrar */
+  #cerrar {
+    top: 3px;
+    right: 10px;
+    font-size: 30px;
+  }
+}
