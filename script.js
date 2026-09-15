@@ -14,13 +14,9 @@ const url =
 // NÚMERO DE WHATSAPP
 // ======================================================
 
-// Escribe aquí el número de WhatsApp que recibirá
-// las consultas.
-//
-// Formato internacional, sin +, espacios ni guiones.
-//
-// Ejemplo:
-// const telefonoWhatsApp = "525512345678";
+// Formato internacional.
+// México: 52 + 10 dígitos
+// Sin +, espacios ni guiones.
 
 const telefonoWhatsApp = "525535000789";
 
@@ -67,16 +63,44 @@ const whatsappProducto =
 
 
 // ======================================================
+// FILTROS
+// ======================================================
+
+const botonesFiltro =
+  document.querySelectorAll(".filtro");
+
+
+// ======================================================
+// VARIABLES DEL CATÁLOGO
+// ======================================================
+
+// Aquí guardaremos todos los productos.
+
+let productos = [];
+
+
+// Aquí guardaremos las imágenes disponibles.
+
+let archivosImagenes = [];
+
+
+// Categoría actualmente seleccionada.
+
+let categoriaActual = "Todos";
+
+
+// ======================================================
 // FUNCIÓN PARA ABRIR UN PRODUCTO
 // ======================================================
 
 function abrirProducto(producto, imagenUrl) {
 
   // ----------------------------------------------------
-  // Mostrar imagen grande
+  // Mostrar imagen
   // ----------------------------------------------------
 
   imgGrande.src = imagenUrl;
+
   imgGrande.alt = producto.nombre;
 
 
@@ -107,15 +131,12 @@ function abrirProducto(producto, imagenUrl) {
   // CREAR ENLACE DIRECTO AL PRODUCTO
   // ====================================================
 
-  // El enlace utiliza el nombre del archivo de imagen,
-  // no el código comercial del producto.
-
   const enlaceProducto =
     `${window.location.origin}${window.location.pathname}?imagen=${encodeURIComponent(producto.imagen)}`;
 
 
   // ====================================================
-  // CONFIGURAR BOTÓN DE WHATSAPP
+  // CONFIGURAR WHATSAPP
   // ====================================================
 
   whatsappProducto.onclick = () => {
@@ -140,8 +161,10 @@ function abrirProducto(producto, imagenUrl) {
       `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
 
-    // Abrir WhatsApp
-    window.open(urlWhatsApp, "_blank");
+    window.open(
+      urlWhatsApp,
+      "_blank"
+    );
 
   };
 
@@ -156,6 +179,164 @@ function abrirProducto(producto, imagenUrl) {
 
 
 // ======================================================
+// MOSTRAR PRODUCTOS
+// ======================================================
+
+function mostrarProductos() {
+
+  // Limpiar galería
+
+  galeria.innerHTML = "";
+
+
+  // ----------------------------------------------------
+  // Filtrar productos
+  // ----------------------------------------------------
+
+  let productosFiltrados;
+
+
+  if (categoriaActual === "Todos") {
+
+    productosFiltrados =
+      productos;
+
+  } else {
+
+    productosFiltrados =
+      productos.filter(
+        producto =>
+          producto.categoria === categoriaActual
+      );
+
+  }
+
+
+  // ----------------------------------------------------
+  // Crear galería
+  // ----------------------------------------------------
+
+  archivosImagenes.forEach(file => {
+
+    // Buscar información del producto
+
+    const producto =
+      productosFiltrados.find(
+        p => p.imagen === file.name
+      );
+
+
+    // Si esta imagen no pertenece a la categoría
+    // seleccionada, no la mostramos.
+
+    if (!producto) {
+
+      return;
+
+    }
+
+
+    // --------------------------------------------------
+    // Crear imagen
+    // --------------------------------------------------
+
+    const img =
+      document.createElement("img");
+
+
+    img.src =
+      file.download_url;
+
+    img.alt =
+      producto.nombre;
+
+
+    // --------------------------------------------------
+    // Abrir producto
+    // --------------------------------------------------
+
+    img.onclick = () => {
+
+      abrirProducto(
+        producto,
+        file.download_url
+      );
+
+    };
+
+
+    // --------------------------------------------------
+    // Agregar a la galería
+    // --------------------------------------------------
+
+    galeria.appendChild(img);
+
+  });
+
+
+  // ----------------------------------------------------
+  // Si no hay productos
+  // ----------------------------------------------------
+
+  if (
+    productosFiltrados.length === 0
+  ) {
+
+    galeria.innerHTML =
+      "<p>No hay productos en esta categoría.</p>";
+
+  }
+
+}
+
+
+// ======================================================
+// ACTIVAR FILTROS
+// ======================================================
+
+botonesFiltro.forEach(boton => {
+
+  boton.addEventListener(
+    "click",
+    () => {
+
+      // -----------------------------------------------
+      // Obtener categoría seleccionada
+      // -----------------------------------------------
+
+      categoriaActual =
+        boton.dataset.categoria;
+
+
+      // -----------------------------------------------
+      // Quitar estado activo de todos
+      // -----------------------------------------------
+
+      botonesFiltro.forEach(
+        b => b.classList.remove("activo")
+      );
+
+
+      // -----------------------------------------------
+      // Activar únicamente el seleccionado
+      // -----------------------------------------------
+
+      boton.classList.add("activo");
+
+
+      // -----------------------------------------------
+      // Mostrar productos
+      // -----------------------------------------------
+
+      mostrarProductos();
+
+    }
+  );
+
+});
+
+
+// ======================================================
 // CARGAR PRODUCTOS
 // ======================================================
 
@@ -163,7 +344,13 @@ fetch("productos.json")
 
   .then(res => res.json())
 
-  .then(productos => {
+  .then(dataProductos => {
+
+    // Guardar productos
+
+    productos =
+      dataProductos;
+
 
     // --------------------------------------------------
     // Cargar imágenes desde GitHub
@@ -173,9 +360,11 @@ fetch("productos.json")
 
       .then(res => res.json())
 
-      .then(data => {
+      .then(dataImagenes => {
 
-        if (!Array.isArray(data)) {
+        if (
+          !Array.isArray(dataImagenes)
+        ) {
 
           galeria.innerHTML =
             "Error cargando imágenes";
@@ -189,101 +378,57 @@ fetch("productos.json")
         // ORDENAR IMÁGENES POR NÚMERO
         // ==================================================
 
-        data.sort((a, b) => {
+        dataImagenes.sort(
+          (a, b) => {
 
-          const numeroA =
-            parseInt(
-              a.name.match(/^\d+/)?.[0] || "999999",
-              10
-            );
-
-          const numeroB =
-            parseInt(
-              b.name.match(/^\d+/)?.[0] || "999999",
-              10
-            );
-
-
-          if (numeroA !== numeroB) {
-
-            return numeroA - numeroB;
-
-          }
-
-
-          return a.name.localeCompare(b.name);
-
-        });
-
-
-        // ==================================================
-        // CREAR GALERÍA
-        // ==================================================
-
-        data.forEach(file => {
-
-          if (
-            file.type === "file" &&
-            file.download_url
-          ) {
-
-            // Buscar información correspondiente
-            // a esta imagen.
-
-            const producto =
-              productos.find(
-                p => p.imagen === file.name
+            const numeroA =
+              parseInt(
+                a.name.match(/^\d+/)?.[0]
+                || "999999",
+                10
               );
 
 
-            // Si no existe información del producto,
-            // no mostramos la imagen.
+            const numeroB =
+              parseInt(
+                b.name.match(/^\d+/)?.[0]
+                || "999999",
+                10
+              );
 
-            if (!producto) {
 
-              return;
+            if (
+              numeroA !== numeroB
+            ) {
+
+              return numeroA - numeroB;
 
             }
 
 
-            // Crear imagen
-
-            const img =
-              document.createElement("img");
-
-
-            img.src =
-              file.download_url;
-
-            img.alt =
-              producto.nombre;
-
-
-            // ----------------------------------------------
-            // Al hacer clic en la imagen
-            // ----------------------------------------------
-
-            img.onclick = () => {
-
-              abrirProducto(
-                producto,
-                file.download_url
-              );
-
-            };
-
-
-            // Agregar imagen a la galería
-
-            galeria.appendChild(img);
+            return a.name.localeCompare(
+              b.name
+            );
 
           }
+        );
 
-        });
+
+        // Guardar imágenes
+
+        archivosImagenes =
+          dataImagenes;
 
 
         // ==================================================
-        // ABRIR PRODUCTO DESDE UN ENLACE DIRECTO
+        // MOSTRAR TODOS LOS PRODUCTOS AL INICIO
+        // ==================================================
+
+        mostrarProductos();
+
+
+        // ==================================================
+        // ABRIR PRODUCTO DESDE ENLACE DIRECTO
         // ==================================================
 
         const parametros =
@@ -292,48 +437,38 @@ fetch("productos.json")
           );
 
 
-        // Obtener el nombre de la imagen desde la URL
-
         const imagenSolicitada =
           parametros.get("imagen");
 
 
-        // Si la URL contiene ?imagen=...
-
-        if (imagenSolicitada) {
-
-          // Buscar el producto cuyo campo "imagen"
-          // coincida con el nombre recibido.
+        if (
+          imagenSolicitada
+        ) {
 
           const productoSolicitado =
             productos.find(
-              p => p.imagen === imagenSolicitada
+              p =>
+                p.imagen ===
+                imagenSolicitada
             );
 
 
-          // Si encontramos el producto
-
-          if (productoSolicitado) {
-
-            // Buscar el archivo correspondiente
-            // dentro de la carpeta image de GitHub.
+          if (
+            productoSolicitado
+          ) {
 
             const archivoImagen =
-              data.find(
+              archivosImagenes.find(
                 file =>
                   file.name ===
                   productoSolicitado.imagen
               );
 
 
-            // Si encontramos la imagen
-
             if (
               archivoImagen &&
               archivoImagen.download_url
             ) {
-
-              // Abrir automáticamente el producto.
 
               abrirProducto(
                 productoSolicitado,
@@ -352,7 +487,11 @@ fetch("productos.json")
 
   .catch(err => {
 
-    console.error("Error:", err);
+    console.error(
+      "Error:",
+      err
+    );
+
 
     galeria.innerHTML =
       "No se pudieron cargar los productos";
@@ -383,10 +522,12 @@ modal.onclick = () => {
 
 
 // ======================================================
-// EVITAR QUE UN CLIC DENTRO DEL MODAL LO CIERRE
+// EVITAR CIERRE DENTRO DEL MODAL
 // ======================================================
 
-contenidoModal.onclick = (event) => {
+contenidoModal.onclick = (
+  event
+) => {
 
   event.stopPropagation();
 
