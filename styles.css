@@ -331,3 +331,91 @@ body {
   }
 
 }
+/* ======================================================
+   FILTROS POR CATEGORÍA
+   ====================================================== */
+
+#filtros {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
+}
+
+
+/* Botones */
+
+.filtro {
+  padding: 10px 16px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #333;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+
+/* Cuando pasamos el mouse */
+
+.filtro:hover {
+  transform: translateY(-1px);
+}
+
+
+/* Categoría seleccionada */
+
+.filtro.activo {
+  background: #333;
+
+  color: white;
+
+  border-color: #333;
+}
+
+
+/* ======================================================
+   FILTROS EN CELULARES
+   ====================================================== */
+
+@media (max-width: 600px) {
+
+  #filtros {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+
+  }
+
+
+  .filtro {
+
+    width: 100%;
+
+    padding: 10px 6px;
+
+    font-size: 13px;
+
+  }
+
+}
