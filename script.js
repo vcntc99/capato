@@ -134,7 +134,9 @@ function abrirProducto(producto, imagenUrl) {
   const enlaceProducto =
     `${window.location.origin}${window.location.pathname}?imagen=${encodeURIComponent(producto.imagen)}`;
 
-
+  const copiarEnlaceProducto =
+  document.getElementById("copiarEnlaceProducto");
+  
   // ====================================================
   // CONFIGURAR WHATSAPP
   // ====================================================
