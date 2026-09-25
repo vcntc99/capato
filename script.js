@@ -170,6 +170,44 @@ function abrirProducto(producto, imagenUrl) {
 
   };
 
+// ====================================================
+// COPIAR ENLACE DEL PRODUCTO
+// ====================================================
+
+copiarEnlaceProducto.onclick = async () => {
+
+  try {
+
+    await navigator.clipboard.writeText(
+      enlaceProducto
+    );
+
+    copiarEnlaceProducto.textContent =
+      "Enlace copiado";
+
+    setTimeout(() => {
+
+      copiarEnlaceProducto.textContent =
+        "Copiar enlace para compartir producto";
+
+    }, 2000);
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "No se pudo copiar el enlace:",
+      error
+    );
+
+    alert(
+      "No fue posible copiar el enlace. Puedes copiarlo manualmente desde la barra de direcciones."
+    );
+
+  }
+
+};
 
   // ----------------------------------------------------
   // Abrir modal
@@ -178,7 +216,6 @@ function abrirProducto(producto, imagenUrl) {
   modal.classList.remove("hidden");
 
 }
-
 
 // ======================================================
 // MOSTRAR PRODUCTOS
