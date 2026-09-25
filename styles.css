@@ -352,6 +352,15 @@ body {
 
   }
 
+   #copiarEnlaceProducto {
+
+  width: 100%;
+
+  padding: 14px 20px;
+
+  font-size: 17px;
+
+}
 
   /* ----------------------------------------------
      Botón cerrar
