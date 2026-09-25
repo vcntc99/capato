@@ -8,6 +8,24 @@
     "marca": "Marca de prueba",
     "codigo": "PROD-0099"
   },
+    {
+    "imagen": "0001 Mochila escolar azul.jpeg",
+    "nombre": "Mochila escolar azul",
+    "descripcion": "Mochila escolar amplia con diseño juvenil y deportivo. Cuenta con compartimento principal, bolsillos frontales, tirantes ajustables y respaldo acolchado. Ideal para transportar libros, cuadernos, útiles escolares y artículos personales. Medidas aprox 45 × 32 × 25 cm.",
+    "precio": 150.00,
+    "categoria": "Escolares",
+    "marca": "RONGLIDA",
+    "codigo": "Mesa-000"
+  },
+  {
+    "imagen": "0005 Mochila escolar roja.jpeg",
+    "nombre": "Mochila escolar roja",
+    "descripcion": "Mochila escolar amplia con diseño juvenil y deportivo. Cuenta con compartimento principal, bolsillos frontales, tirantes ajustables y respaldo acolchado. Ideal para transportar libros, cuadernos, útiles escolares y artículos personales. Medidas aprox 45 × 32 × 25 cm.",
+    "precio": 150.00,
+    "categoria": "Escolares",
+    "marca": "RONGLIDA",
+    "codigo": "Mesa-000"
+  },
   {
     "imagen": "0100-Flor-prueba.jpg",
     "nombre": "Producto de prueba 0100",
