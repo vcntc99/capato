@@ -953,7 +953,44 @@
 
     }
 
+function decodificarBase64(base64) {
+  const binario = atob(base64.replace(/\s/g, ""));
 
+  const bytes = Uint8Array.from(
+    binario,
+    caracter => caracter.charCodeAt(0)
+  );
+
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+
+function codificarBase64(texto) {
+  const bytes = new TextEncoder().encode(texto);
+
+  let binario = "";
+
+  const tamañoBloque = 0x8000;
+
+  for (
+    let i = 0;
+    i < bytes.length;
+    i += tamañoBloque
+  ) {
+    const bloque =
+      bytes.subarray(
+        i,
+        i + tamañoBloque
+      );
+
+    binario += String.fromCharCode(
+      ...bloque
+    );
+  }
+
+  return btoa(binario);
+}
+    
     // ==================================================
     // REVISAR CATÁLOGO
     // ==================================================
