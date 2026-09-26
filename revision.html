@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Capato - Revisión de imágenes</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #resumen {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      line-height: 1.8;
+    }
+
+    #estado {
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    #galeriaRevision {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    .tarjeta {
+      background: white;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      overflow-wrap: anywhere;
+    }
+
+    .tarjeta img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .nombreArchivo {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .aviso {
+      color: #a65a00;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    button, .enlace {
+      display: inline-block;
+      padding: 11px 18px;
+      margin: 5px 8px 5px 0;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover, .enlace:hover {
+      background: #555;
+    }
+
+    @media (max-width: 600px) {
+      #galeriaRevision {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .tarjeta img {
+        height: 140px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>Revisión del catálogo</h1>
+
+  <p>
+    Esta página muestra las imágenes que no tienen
+    un registro asociado en productos.json.
+  </p>
+
+  <button id="actualizar">
+    Actualizar revisión
+  </button>
+
+  <a class="enlace" href="index.html">
+    Volver al catálogo
+  </a>
+
+  <div id="resumen">
+    <div>
+      Imágenes encontradas:
+      <strong id="totalImagenes">0</strong>
+    </div>
+
+    <div>
+      Imágenes con registro:
+      <strong id="conRegistro">0</strong>
+    </div>
+
+    <div>
+      Imágenes sin registro:
+      <strong id="sinRegistro">0</strong>
+    </div>
+  </div>
+
+  <p id="estado">Esperando revisión...</p>
+
+  <div id="galeriaRevision"></div>
+
+
+  <script>
+
+    // ================================================
+    // CONFIGURACIÓN
+    // ================================================
+
+    const usuario = "vcntc99";
+    const repo = "capato";
+    const carpeta = "image";
+
+    const urlGitHub =
+      `https://api.github.com/repos/${usuario}/${repo}/contents/${carpeta}?ref=main`;
+
+    const galeria =
+      document.getElementById("galeriaRevision");
+
+    const estado =
+      document.getElementById("estado");
+
+
+    // ================================================
+    // REVISAR IMÁGENES
+    // ================================================
+
+    async function revisarCatalogo() {
+
+      galeria.innerHTML = "";
+
+      estado.textContent =
+        "Revisando imágenes y productos...";
+
+      document.getElementById("totalImagenes")
+        .textContent = "0";
+
+      document.getElementById("conRegistro")
+        .textContent = "0";
+
+      document.getElementById("sinRegistro")
+        .textContent = "0";
+
+
+      try {
+
+        // Evitar reutilizar respuestas anteriores
+        const opciones = {
+          cache: "no-store"
+        };
+
+        // Cargar JSON y archivos de GitHub
+        const [respuestaProductos, respuestaImagenes] =
+          await Promise.all([
+
+            fetch(
+              `productos.json?t=${Date.now()}`,
+              opciones
+            ),
+
+            fetch(
+              `${urlGitHub}&t=${Date.now()}`,
+              opciones
+            )
+
+          ]);
+
+
+        // Verificar las respuestas
+        if (
+          !respuestaProductos.ok ||
+          !respuestaImagenes.ok
+        ) {
+          throw new Error(
+            "No se pudieron descargar los datos."
+          );
+        }
+
+
+        const productos =
+          await respuestaProductos.json();
+
+        const archivos =
+          await respuestaImagenes.json();
+
+
+        if (
+          !Array.isArray(productos) ||
+          !Array.isArray(archivos)
+        ) {
+          throw new Error(
+            "Los datos recibidos no tienen el formato esperado."
+          );
+        }
+
+
+        // ============================================
+        // SELECCIONAR ÚNICAMENTE IMÁGENES
+        // ============================================
+
+        const imagenes = archivos.filter(file => {
+
+          return (
+            file.type === "file" &&
+            /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
+          );
+
+        });
+
+
+        // ============================================
+        // OBTENER NOMBRES REGISTRADOS EN JSON
+        // ============================================
+
+        const nombresRegistrados = new Set(
+
+          productos.map(
+            producto => producto.imagen
+          )
+
+        );
+
+
+        // ============================================
+        // ENCONTRAR IMÁGENES SIN REGISTRO
+        // ============================================
+
+        const imagenesSinRegistro =
+          imagenes.filter(file => {
+
+            return !nombresRegistrados.has(file.name);
+
+          });
+
+
+        // ============================================
+        // ORDENAR POR NÚMERO DEL ARCHIVO
+        // ============================================
+
+        imagenesSinRegistro.sort((a, b) => {
+
+          const numeroA = parseInt(
+            a.name.match(/^\d+/)?.[0] || "999999",
+            10
+          );
+
+          const numeroB = parseInt(
+            b.name.match(/^\d+/)?.[0] || "999999",
+            10
+          );
+
+          if (numeroA !== numeroB) {
+            return numeroA - numeroB;
+          }
+
+          return a.name.localeCompare(b.name);
+
+        });
+
+
+        // ============================================
+        // MOSTRAR CONTADORES
+        // ============================================
+
+        document.getElementById("totalImagenes")
+          .textContent = imagenes.length;
+
+        document.getElementById("conRegistro")
+          .textContent =
+            imagenes.length - imagenesSinRegistro.length;
+
+        document.getElementById("sinRegistro")
+          .textContent = imagenesSinRegistro.length;
+
+
+        // ============================================
+        // MOSTRAR RESULTADOS
+        // ============================================
+
+        if (imagenesSinRegistro.length === 0) {
+
+          estado.textContent =
+            "Todas las imágenes tienen un registro asociado.";
+
+          return;
+
+        }
+
+
+        estado.textContent =
+          `Se encontraron ${imagenesSinRegistro.length} imágenes sin registro.`;
+
+
+        imagenesSinRegistro.forEach(file => {
+
+          const tarjeta =
+            document.createElement("div");
+
+          tarjeta.className = "tarjeta";
+
+
+          const imagen =
+            document.createElement("img");
+
+          imagen.src = file.download_url;
+          imagen.alt = file.name;
+          imagen.loading = "lazy";
+
+
+          const nombre =
+            document.createElement("p");
+
+          nombre.className = "nombreArchivo";
+          nombre.textContent = file.name;
+
+
+          const aviso =
+            document.createElement("p");
+
+          aviso.className = "aviso";
+
+          aviso.textContent =
+            "Sin registro en productos.json";
+
+
+          tarjeta.appendChild(imagen);
+          tarjeta.appendChild(nombre);
+          tarjeta.appendChild(aviso);
+
+          galeria.appendChild(tarjeta);
+
+        });
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        estado.textContent =
+          "Error durante la revisión: " +
+          error.message;
+
+      }
+
+    }
+
+
+    // ================================================
+    // BOTÓN ACTUALIZAR
+    // ================================================
+
+    document.getElementById("actualizar")
+      .addEventListener(
+        "click",
+        revisarCatalogo
+      );
+
+
+    // ================================================
+    // REVISIÓN AUTOMÁTICA AL ABRIR
+    // ================================================
+
+    revisarCatalogo();
+
+  </script>
+
+</body>
+</html>
