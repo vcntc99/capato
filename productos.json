@@ -27,6 +27,42 @@
     "codigo": "Mesa-000"
   },
   {
+    "imagen": "0010 Mochila escolar reforzada negra.jpeg",
+    "nombre": "Mochila Reforzada Negra con Múltiples Compartimentos",
+    "descripcion": "Mochila amplia, práctica y resistente, ideal para escuela, trabajo, universidad o uso diario. Cuenta con varios compartimentos y cierres reforzados con jaladeras metálicas, además de una agarradera superior reforzada para mayor seguridad al transportarla, tirantes ajustables y respaldo acolchado. Su diseño completamente negro le da una apariencia discreta y versátil, adecuada para diferentes usos. Medidas Aprox. 45 × 32 × 18 cm",
+    "precio": 250.00,
+    "categoria": "Escolares",
+    "marca": "Generica",
+    "codigo": "Mesa-000"
+  },
+    {
+    "imagen": "0011 Mochila escolar reforzada cafe.jpeg.jpeg",
+    "nombre": "Mochila Reforzada café con Múltiples Compartimentos",
+    "descripcion": "Mochila amplia, práctica y resistente, ideal para escuela, trabajo, universidad o uso diario. Cuenta con varios compartimentos y cierres reforzados con jaladeras metálicas, además de una agarradera superior reforzada para mayor seguridad al transportarla, tirantes ajustables y respaldo acolchado. Su diseño completamente negro le da una apariencia discreta y versátil, adecuada para diferentes usos. Medidas Aprox. 45 × 32 × 18 cm",
+    "precio": 250.00,
+    "categoria": "Escolares",
+    "marca": "Generica",
+    "codigo": "Mesa-000"
+  },
+      {
+    "imagen": "0025 Marcatexto.jpeg",
+    "nombre": "Marcatextos en Cinta — Color Neón",
+    "descripcion": "Dale color a tus apuntes y documentos con este práctico marcatextos en cinta. Cuenta con 3 metros de cinta de 5 mm de ancho, ideal para resaltar información importante de manera precisa y ordenada. Su diseño compacto permite llevarlo fácilmente a la escuela, oficina o cualquier lugar. 🌈 Disponible en diferentes colores neón.",
+    "precio": 35.00 c/u,
+    "categoria": "Escolares",
+    "marca": "PA-MATECIN120",
+    "codigo": "Mesa-000"
+  },
+        {
+    "imagen": "0020 Mochila escolar reforzada-candado.jpeg",
+    "nombre": "Mochila Gris con Candado Integrado y Múltiples Compartimentos",
+    "descripcion": "Mochila práctica, moderna y funcional, ideal para escuela, universidad, trabajo o uso diario. Cuenta con candado integrado para asegurar el compartimento principal, además de varios bolsillos y compartimentos que facilitan la organización de tus pertenencias. Su agarradera superior acolchada y sus tirantes permiten transportarla cómodamente. Medidas Aprox. 45 × 32 × 18 cm",
+    "precio": 295.00,
+    "categoria": "Escolares",
+    "marca": "Generica",
+    "codigo": "Mesa-000"
+  },
+  {
     "imagen": "0100-Flor-prueba.jpg",
     "nombre": "Producto de prueba 0100",
     "descripcion": "Esta es la descripción del producto de prueba número 0100.",
