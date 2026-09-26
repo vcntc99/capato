@@ -1,324 +1,1201 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>Capato - Revisión de imágenes</title>
+  <title>Capato - Administración de productos</title>
+
 
   <style>
 
+    /* ==================================================
+       PÁGINA
+       ================================================== */
+
     body {
+
       font-family: Arial, sans-serif;
+
       margin: 20px;
+
       background: #f5f5f5;
+
       color: #333;
+
     }
+
 
     h1 {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
+
+
+    /* ==================================================
+       AUTENTICACIÓN
+       ================================================== */
+
+    #acceso {
+
+      background: white;
+
+      padding: 20px;
+
+      border-radius: 12px;
+
+      margin: 20px 0;
+
+      border: 1px solid #ddd;
+
+    }
+
+
+    #tokenGitHub {
+
+      width: 100%;
+
+      max-width: 600px;
+
+      box-sizing: border-box;
+
+      padding: 12px;
+
+      margin: 8px 0 12px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 8px;
+
+      font-size: 15px;
+
+    }
+
+
+    #avisoToken {
+
+      font-size: 13px;
+
+      color: #666;
+
+      line-height: 1.5;
+
+      max-width: 800px;
+
+    }
+
+
+    /* ==================================================
+       BOTONES
+       ================================================== */
+
+    button,
+    .enlace {
+
+      display: inline-block;
+
+      padding: 11px 18px;
+
+      margin: 5px 8px 5px 0;
+
+      border: none;
+
+      border-radius: 8px;
+
+      background: #333;
+
+      color: white;
+
+      font-size: 14px;
+
+      cursor: pointer;
+
+      text-decoration: none;
+
+    }
+
+
+    button:hover,
+    .enlace:hover {
+
+      background: #555;
+
+    }
+
+
+    button:disabled {
+
+      opacity: 0.5;
+
+      cursor: not-allowed;
+
+    }
+
+
+    /* ==================================================
+       RESUMEN
+       ================================================== */
 
     #resumen {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 10px;
+
       margin: 20px 0;
-      line-height: 1.8;
+
     }
+
+
+    .datoResumen {
+
+      background: white;
+
+      padding: 15px;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      border: 1px solid #ddd;
+
+    }
+
+
+    .numero {
+
+      display: block;
+
+      font-size: 26px;
+
+      font-weight: bold;
+
+      margin-bottom: 5px;
+
+    }
+
+
+    /* ==================================================
+       ESTADO
+       ================================================== */
 
     #estado {
+
       margin: 15px 0;
+
       font-weight: bold;
+
     }
+
+
+    /* ==================================================
+       GALERÍA
+       ================================================== */
 
     #galeriaRevision {
+
       display: grid;
+
       grid-template-columns:
-        repeat(auto-fill, minmax(220px, 1fr));
+        repeat(
+          auto-fill,
+          minmax(220px, 1fr)
+        );
+
       gap: 15px;
+
     }
+
+
+    /* ==================================================
+       TARJETA
+       ================================================== */
 
     .tarjeta {
+
       background: white;
+
       padding: 12px;
+
       border-radius: 10px;
+
       border: 1px solid #ddd;
+
       overflow-wrap: anywhere;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
     }
+
+
+    .tarjeta:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.12);
+
+    }
+
 
     .tarjeta img {
+
       width: 100%;
+
       height: 200px;
+
       object-fit: contain;
+
       border-radius: 8px;
+
+      background: #f8f8f8;
+
     }
+
 
     .nombreArchivo {
+
       font-size: 14px;
+
       font-weight: bold;
-      margin: 10px 0;
+
+      margin: 10px 0 5px;
+
     }
+
 
     .aviso {
+
       color: #a65a00;
+
       font-size: 13px;
+
       font-weight: bold;
+
     }
 
-    button, .enlace {
-      display: inline-block;
-      padding: 11px 18px;
-      margin: 5px 8px 5px 0;
-      border: none;
+
+    /* ==================================================
+       FORMULARIO
+       ================================================== */
+
+    #formularioProducto {
+
+      display: none;
+
+      background: white;
+
+      padding: 20px;
+
+      border-radius: 12px;
+
+      margin: 20px 0;
+
+      border: 1px solid #ddd;
+
+    }
+
+
+    #formularioProducto.visible {
+
+      display: block;
+
+    }
+
+
+    #imagenSeleccionada {
+
+      width: 100%;
+
+      max-width: 350px;
+
+      max-height: 300px;
+
+      object-fit: contain;
+
+      display: block;
+
+      margin-bottom: 15px;
+
       border-radius: 8px;
-      background: #333;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      cursor: pointer;
+
+      background: #f5f5f5;
+
     }
 
-    button:hover, .enlace:hover {
-      background: #555;
+
+    .campo {
+
+      margin-bottom: 15px;
+
     }
+
+
+    .campo label {
+
+      display: block;
+
+      font-weight: bold;
+
+      margin-bottom: 5px;
+
+    }
+
+
+    .campo input,
+    .campo textarea,
+    .campo select {
+
+      width: 100%;
+
+      box-sizing: border-box;
+
+      padding: 11px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 8px;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 15px;
+
+    }
+
+
+    .campo textarea {
+
+      min-height: 100px;
+
+      resize: vertical;
+
+    }
+
+
+    .campo input[readonly] {
+
+      background: #eee;
+
+      color: #555;
+
+    }
+
+
+    #mensajeFormulario {
+
+      margin: 10px 0;
+
+      font-weight: bold;
+
+    }
+
+
+    /* ==================================================
+       CELULARES
+       ================================================== */
 
     @media (max-width: 600px) {
-      #galeriaRevision {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+
+      body {
+
+        margin: 10px;
+
       }
 
-      .tarjeta img {
-        height: 140px;
+
+      #resumen {
+
+        grid-template-columns: 1fr;
+
       }
+
+
+      #galeriaRevision {
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+      }
+
+
+      .tarjeta {
+
+        padding: 8px;
+
+      }
+
+
+      .tarjeta img {
+
+        height: 140px;
+
+      }
+
+
+      button,
+      .enlace {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        margin: 5px 0;
+
+        text-align: center;
+
+      }
+
     }
 
   </style>
+
 </head>
+
 
 <body>
 
-  <h1>Revisión del catálogo</h1>
+
+  <!-- ==================================================
+       TÍTULO
+       ================================================== -->
+
+  <h1>Administración de productos</h1>
 
   <p>
-    Esta página muestra las imágenes que no tienen
-    un registro asociado en productos.json.
+    Desde aquí puedes revisar las fotografías que todavía
+    no tienen una entrada en <strong>productos.json</strong>
+    y crear su registro.
   </p>
 
-  <button id="actualizar">
-    Actualizar revisión
-  </button>
 
-  <a class="enlace" href="index.html">
-    Volver al catálogo
-  </a>
+  <!-- ==================================================
+       ACCESO A GITHUB
+       ================================================== -->
 
-  <div id="resumen">
-    <div>
-      Imágenes encontradas:
-      <strong id="totalImagenes">0</strong>
-    </div>
+  <div id="acceso">
 
-    <div>
-      Imágenes con registro:
-      <strong id="conRegistro">0</strong>
-    </div>
+    <h2>Acceso de administrador</h2>
 
-    <div>
-      Imágenes sin registro:
-      <strong id="sinRegistro">0</strong>
-    </div>
+    <label for="tokenGitHub">
+      Token de GitHub:
+    </label>
+
+    <input
+      id="tokenGitHub"
+      type="password"
+      autocomplete="off"
+      placeholder="Pega aquí tu token de GitHub">
+
+    <button id="conectar">
+      Conectar y revisar
+    </button>
+
+    <p id="avisoToken">
+
+      El token se utiliza únicamente durante esta sesión
+      para actualizar <strong>productos.json</strong>.
+      No se guarda en el código, localStorage ni
+      sessionStorage.
+
+      <br><br>
+
+      Necesitas un token de GitHub con permiso para
+      modificar el contenido del repositorio
+      <strong>vcntc99/capato</strong>.
+
+    </p>
+
   </div>
 
-  <p id="estado">Esperando revisión...</p>
+
+  <!-- ==================================================
+       BOTONES GENERALES
+       ================================================== -->
+
+  <div id="acciones">
+
+    <button id="actualizar"
+            disabled>
+      Actualizar revisión
+    </button>
+
+    <a class="enlace"
+       href="index.html">
+      Volver al catálogo
+    </a>
+
+  </div>
+
+
+  <!-- ==================================================
+       RESUMEN
+       ================================================== -->
+
+  <div id="resumen">
+
+    <div class="datoResumen">
+
+      <span
+        class="numero"
+        id="totalImagenes">
+        0
+      </span>
+
+      Imágenes
+
+    </div>
+
+
+    <div class="datoResumen">
+
+      <span
+        class="numero"
+        id="conRegistro">
+        0
+      </span>
+
+      Con registro
+
+    </div>
+
+
+    <div class="datoResumen">
+
+      <span
+        class="numero"
+        id="sinRegistro">
+        0
+      </span>
+
+      Sin registro
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================================================
+       FORMULARIO DE PRODUCTO
+       ================================================== -->
+
+  <div id="formularioProducto">
+
+    <h2>Agregar producto</h2>
+
+
+    <img
+      id="imagenSeleccionada"
+      src=""
+      alt="">
+
+
+    <div class="campo">
+
+      <label for="archivoProducto">
+        Nombre del archivo
+      </label>
+
+      <input
+        id="archivoProducto"
+        type="text"
+        readonly>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="nombreProducto">
+        Nombre del producto *
+      </label>
+
+      <input
+        id="nombreProducto"
+        type="text"
+        placeholder="Ejemplo: Marcatexto de colores">
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="descripcionProducto">
+        Descripción *
+      </label>
+
+      <textarea
+        id="descripcionProducto"
+        placeholder="Descripción del producto"></textarea>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="precioProducto">
+        Precio *
+      </label>
+
+      <input
+        id="precioProducto"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Ejemplo: 49.90">
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="categoriaProducto">
+        Categoría *
+      </label>
+
+      <select id="categoriaProducto">
+
+        <option value="">
+          Seleccionar categoría
+        </option>
+
+        <option value="Juguetes">
+          Juguetes
+        </option>
+
+        <option value="Accesorios Personales">
+          Accesorios Personales
+        </option>
+
+        <option value="Accesorios Mascota">
+          Accesorios Mascota
+        </option>
+
+        <option value="Accesorios Teléfono">
+          Accesorios Teléfono
+        </option>
+
+        <option value="Accesorios Computadora">
+          Accesorios Computadora
+        </option>
+
+        <option value="Accesorios Cocina">
+          Accesorios Cocina
+        </option>
+
+        <option value="Escolares">
+          Escolares
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="marcaProducto">
+        Marca
+      </label>
+
+      <input
+        id="marcaProducto"
+        type="text"
+        placeholder="Ejemplo: Marca">
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="codigoProducto">
+        Código del producto *
+      </label>
+
+      <input
+        id="codigoProducto"
+        type="text"
+        placeholder="Ejemplo: ESC-0030">
+
+    </div>
+
+
+    <p id="mensajeFormulario"></p>
+
+
+    <button id="guardarProducto">
+      Guardar producto
+    </button>
+
+    <button id="cancelarFormulario">
+      Cancelar
+    </button>
+
+  </div>
+
+
+  <!-- ==================================================
+       ESTADO
+       ================================================== -->
+
+  <p id="estado">
+    Introduce tu token de GitHub para comenzar.
+  </p>
+
+
+  <!-- ==================================================
+       GALERÍA DE IMÁGENES SIN REGISTRO
+       ================================================== -->
 
   <div id="galeriaRevision"></div>
 
 
+  <!-- ==================================================
+       JAVASCRIPT
+       ================================================== -->
+
   <script>
 
-    // ================================================
-    // CONFIGURACIÓN
-    // ================================================
 
-    const usuario = "vcntc99";
-    const repo = "capato";
-    const carpeta = "image";
+    // ==================================================
+    // CONFIGURACIÓN
+    // ==================================================
+
+    const usuario =
+      "vcntc99";
+
+    const repo =
+      "capato";
+
+    const carpeta =
+      "image";
+
+    const rama =
+      "main";
+
 
     const urlGitHub =
-      `https://api.github.com/repos/${usuario}/${repo}/contents/${carpeta}?ref=main`;
+      `https://api.github.com/repos/${usuario}/${repo}/contents/${carpeta}?ref=${rama}`;
 
-    const galeria =
-      document.getElementById("galeriaRevision");
+
+    const urlProductos =
+      `https://api.github.com/repos/${usuario}/${repo}/contents/productos.json?ref=${rama}`;
+
+
+    // ==================================================
+    // ELEMENTOS
+    // ==================================================
+
+    const tokenGitHub =
+      document.getElementById(
+        "tokenGitHub"
+      );
+
+    const conectar =
+      document.getElementById(
+        "conectar"
+      );
+
+    const actualizar =
+      document.getElementById(
+        "actualizar"
+      );
 
     const estado =
-      document.getElementById("estado");
+      document.getElementById(
+        "estado"
+      );
+
+    const galeriaRevision =
+      document.getElementById(
+        "galeriaRevision"
+      );
 
 
-    // ================================================
-    // REVISAR IMÁGENES
-    // ================================================
+    const formularioProducto =
+      document.getElementById(
+        "formularioProducto"
+      );
+
+    const imagenSeleccionada =
+      document.getElementById(
+        "imagenSeleccionada"
+      );
+
+    const archivoProducto =
+      document.getElementById(
+        "archivoProducto"
+      );
+
+    const nombreProducto =
+      document.getElementById(
+        "nombreProducto"
+      );
+
+    const descripcionProducto =
+      document.getElementById(
+        "descripcionProducto"
+      );
+
+    const precioProducto =
+      document.getElementById(
+        "precioProducto"
+      );
+
+    const categoriaProducto =
+      document.getElementById(
+        "categoriaProducto"
+      );
+
+    const marcaProducto =
+      document.getElementById(
+        "marcaProducto"
+      );
+
+    const codigoProducto =
+      document.getElementById(
+        "codigoProducto"
+      );
+
+    const guardarProducto =
+      document.getElementById(
+        "guardarProducto"
+      );
+
+    const cancelarFormulario =
+      document.getElementById(
+        "cancelarFormulario"
+      );
+
+    const mensajeFormulario =
+      document.getElementById(
+        "mensajeFormulario"
+      );
+
+
+    // ==================================================
+    // VARIABLES
+    // ==================================================
+
+    let token = "";
+
+    let productos = [];
+
+    let archivoSeleccionado = null;
+
+    let shaProductos = "";
+
+    let archivosImagenes = [];
+
+
+    // ==================================================
+    // AUTENTICACIÓN
+    // ==================================================
+
+    conectar.addEventListener(
+      "click",
+      async () => {
+
+        const tokenIntroducido =
+          tokenGitHub.value.trim();
+
+
+        if (!tokenIntroducido) {
+
+          estado.textContent =
+            "Introduce tu token de GitHub.";
+
+          return;
+
+        }
+
+
+        token =
+          tokenIntroducido;
+
+
+        await revisarCatalogo();
+
+      }
+    );
+
+
+    // ==================================================
+    // CABECERAS DE GITHUB
+    // ==================================================
+
+    function encabezadosGitHub() {
+
+      return {
+
+        "Accept":
+          "application/vnd.github+json",
+
+        "Authorization":
+          `Bearer ${token}`,
+
+        "X-GitHub-Api-Version":
+          "2022-11-28"
+
+      };
+
+    }
+
+
+    // ==================================================
+    // REVISAR CATÁLOGO
+    // ==================================================
 
     async function revisarCatalogo() {
 
-      galeria.innerHTML = "";
+      if (!token) {
+
+        estado.textContent =
+          "Primero debes introducir el token.";
+
+        return;
+
+      }
+
+
+      galeriaRevision.innerHTML = "";
 
       estado.textContent =
-        "Revisando imágenes y productos...";
-
-      document.getElementById("totalImagenes")
-        .textContent = "0";
-
-      document.getElementById("conRegistro")
-        .textContent = "0";
-
-      document.getElementById("sinRegistro")
-        .textContent = "0";
+        "Conectando con GitHub...";
 
 
       try {
 
-        // Evitar reutilizar respuestas anteriores
-        const opciones = {
-          cache: "no-store"
-        };
+        // ----------------------------------------------
+        // Descargar productos.json desde GitHub
+        // ----------------------------------------------
 
-        // Cargar JSON y archivos de GitHub
-        const [respuestaProductos, respuestaImagenes] =
-          await Promise.all([
+        const respuestaProductos =
+          await fetch(
+            `${urlProductos}&t=${Date.now()}`,
+            {
+              method: "GET",
 
-            fetch(
-              `productos.json?t=${Date.now()}`,
-              opciones
-            ),
+              headers:
+                encabezadosGitHub(),
 
-            fetch(
-              `${urlGitHub}&t=${Date.now()}`,
-              opciones
-            )
-
-          ]);
-
-
-        // Verificar las respuestas
-        if (
-          !respuestaProductos.ok ||
-          !respuestaImagenes.ok
-        ) {
-          throw new Error(
-            "No se pudieron descargar los datos."
+              cache: "no-store"
+            }
           );
+
+
+        if (!respuestaProductos.ok) {
+
+          throw new Error(
+            `Error al leer productos.json: ${respuestaProductos.status}`
+          );
+
         }
 
 
-        const productos =
+        const datosProductos =
           await respuestaProductos.json();
+
+
+        shaProductos =
+          datosProductos.sha;
+
+
+        // ----------------------------------------------
+        // Decodificar productos.json
+        // ----------------------------------------------
+
+        const contenido =
+          decodificarBase64(
+            datosProductos.content
+          );
+
+
+        productos =
+          JSON.parse(contenido);
+
+
+        if (!Array.isArray(productos)) {
+
+          throw new Error(
+            "productos.json no contiene una lista válida."
+          );
+
+        }
+
+
+        // ----------------------------------------------
+        // Descargar imágenes
+        // ----------------------------------------------
+
+        const respuestaImagenes =
+          await fetch(
+            `${urlGitHub}&t=${Date.now()}`,
+            {
+              method: "GET",
+
+              headers:
+                encabezadosGitHub(),
+
+              cache: "no-store"
+            }
+          );
+
+
+        if (!respuestaImagenes.ok) {
+
+          throw new Error(
+            `Error al leer la carpeta image: ${respuestaImagenes.status}`
+          );
+
+        }
+
 
         const archivos =
           await respuestaImagenes.json();
 
 
-        if (
-          !Array.isArray(productos) ||
-          !Array.isArray(archivos)
-        ) {
+        if (!Array.isArray(archivos)) {
+
           throw new Error(
-            "Los datos recibidos no tienen el formato esperado."
+            "GitHub no devolvió una lista de archivos."
           );
+
         }
 
 
-        // ============================================
-        // SELECCIONAR ÚNICAMENTE IMÁGENES
-        // ============================================
+        // ----------------------------------------------
+        // Solo imágenes
+        // ----------------------------------------------
 
-        const imagenes = archivos.filter(file => {
+        archivosImagenes =
+          archivos.filter(file => {
 
-          return (
-            file.type === "file" &&
-            /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
-          );
-
-        });
-
-
-        // ============================================
-        // OBTENER NOMBRES REGISTRADOS EN JSON
-        // ============================================
-
-        const nombresRegistrados = new Set(
-
-          productos.map(
-            producto => producto.imagen
-          )
-
-        );
-
-
-        // ============================================
-        // ENCONTRAR IMÁGENES SIN REGISTRO
-        // ============================================
-
-        const imagenesSinRegistro =
-          imagenes.filter(file => {
-
-            return !nombresRegistrados.has(file.name);
+            return (
+              file.type === "file" &&
+              /\.(jpg|jpeg|png|gif|webp)$/i
+                .test(file.name)
+            );
 
           });
 
 
-        // ============================================
-        // ORDENAR POR NÚMERO DEL ARCHIVO
-        // ============================================
+        // ----------------------------------------------
+        // Nombres registrados
+        // ----------------------------------------------
 
-        imagenesSinRegistro.sort((a, b) => {
+        const nombresRegistrados =
+          new Set(
 
-          const numeroA = parseInt(
-            a.name.match(/^\d+/)?.[0] || "999999",
-            10
+            productos.map(
+              producto =>
+                producto.imagen
+            )
+
           );
 
-          const numeroB = parseInt(
-            b.name.match(/^\d+/)?.[0] || "999999",
-            10
-          );
 
-          if (numeroA !== numeroB) {
-            return numeroA - numeroB;
+        // ----------------------------------------------
+        // Imágenes sin registro
+        // ----------------------------------------------
+
+        const imagenesSinRegistro =
+          archivosImagenes.filter(file => {
+
+            return !nombresRegistrados.has(
+              file.name
+            );
+
+          });
+
+
+        // ----------------------------------------------
+        // Ordenar
+        // ----------------------------------------------
+
+        imagenesSinRegistro.sort(
+          (a, b) => {
+
+            const numeroA =
+              parseInt(
+                a.name.match(/^\d+/)?.[0]
+                || "999999",
+                10
+              );
+
+
+            const numeroB =
+              parseInt(
+                b.name.match(/^\d+/)?.[0]
+                || "999999",
+                10
+              );
+
+
+            if (
+              numeroA !== numeroB
+            ) {
+
+              return numeroA - numeroB;
+
+            }
+
+
+            return a.name.localeCompare(
+              b.name
+            );
+
           }
-
-          return a.name.localeCompare(b.name);
-
-        });
+        );
 
 
-        // ============================================
-        // MOSTRAR CONTADORES
-        // ============================================
+        // ----------------------------------------------
+        // Contadores
+        // ----------------------------------------------
 
-        document.getElementById("totalImagenes")
-          .textContent = imagenes.length;
-
-        document.getElementById("conRegistro")
-          .textContent =
-            imagenes.length - imagenesSinRegistro.length;
-
-        document.getElementById("sinRegistro")
-          .textContent = imagenesSinRegistro.length;
+        document.getElementById(
+          "totalImagenes"
+        ).textContent =
+          archivosImagenes.length;
 
 
-        // ============================================
-        // MOSTRAR RESULTADOS
-        // ============================================
+        document.getElementById(
+          "conRegistro"
+        ).textContent =
+          archivosImagenes.length -
+          imagenesSinRegistro.length;
 
-        if (imagenesSinRegistro.length === 0) {
+
+        document.getElementById(
+          "sinRegistro"
+        ).textContent =
+          imagenesSinRegistro.length;
+
+
+        // ----------------------------------------------
+        // Mostrar resultado
+        // ----------------------------------------------
+
+        if (
+          imagenesSinRegistro.length === 0
+        ) {
 
           estado.textContent =
-            "Todas las imágenes tienen un registro asociado.";
+            "✓ Todas las imágenes tienen un registro en productos.json.";
+
+          actualizar.disabled = false;
 
           return;
 
@@ -326,48 +1203,24 @@
 
 
         estado.textContent =
-          `Se encontraron ${imagenesSinRegistro.length} imágenes sin registro.`;
+          `${imagenesSinRegistro.length} imagen(es) sin registro. Pulsa una imagen para agregarla.`;
 
 
-        imagenesSinRegistro.forEach(file => {
+        // ----------------------------------------------
+        // Crear tarjetas
+        // ----------------------------------------------
 
-          const tarjeta =
-            document.createElement("div");
+        imagenesSinRegistro.forEach(
+          file => {
 
-          tarjeta.className = "tarjeta";
+            crearTarjeta(file);
 
-
-          const imagen =
-            document.createElement("img");
-
-          imagen.src = file.download_url;
-          imagen.alt = file.name;
-          imagen.loading = "lazy";
+          }
+        );
 
 
-          const nombre =
-            document.createElement("p");
-
-          nombre.className = "nombreArchivo";
-          nombre.textContent = file.name;
-
-
-          const aviso =
-            document.createElement("p");
-
-          aviso.className = "aviso";
-
-          aviso.textContent =
-            "Sin registro en productos.json";
-
-
-          tarjeta.appendChild(imagen);
-          tarjeta.appendChild(nombre);
-          tarjeta.appendChild(aviso);
-
-          galeria.appendChild(tarjeta);
-
-        });
+        actualizar.disabled =
+          false;
 
       }
 
@@ -376,7 +1229,7 @@
         console.error(error);
 
         estado.textContent =
-          "Error durante la revisión: " +
+          "Error: " +
           error.message;
 
       }
@@ -384,24 +1237,532 @@
     }
 
 
-    // ================================================
-    // BOTÓN ACTUALIZAR
-    // ================================================
+    // ==================================================
+    // CREAR TARJETA
+    // ==================================================
 
-    document.getElementById("actualizar")
-      .addEventListener(
-        "click",
-        revisarCatalogo
+    function crearTarjeta(file) {
+
+      const tarjeta =
+        document.createElement("div");
+
+      tarjeta.className =
+        "tarjeta";
+
+
+      const imagen =
+        document.createElement("img");
+
+      imagen.src =
+        file.download_url;
+
+      imagen.alt =
+        file.name;
+
+      imagen.loading =
+        "lazy";
+
+
+      const nombre =
+        document.createElement("p");
+
+      nombre.className =
+        "nombreArchivo";
+
+      nombre.textContent =
+        file.name;
+
+
+      const aviso =
+        document.createElement("p");
+
+      aviso.className =
+        "aviso";
+
+      aviso.textContent =
+        "Sin registro — pulsa para agregar";
+
+
+      tarjeta.appendChild(
+        imagen
+      );
+
+      tarjeta.appendChild(
+        nombre
+      );
+
+      tarjeta.appendChild(
+        aviso
       );
 
 
-    // ================================================
-    // REVISIÓN AUTOMÁTICA AL ABRIR
-    // ================================================
+      tarjeta.addEventListener(
+        "click",
+        () => {
 
-    revisarCatalogo();
+          seleccionarImagen(file);
+
+        }
+      );
+
+
+      galeriaRevision.appendChild(
+        tarjeta
+      );
+
+    }
+
+
+    // ==================================================
+    // SELECCIONAR IMAGEN
+    // ==================================================
+
+    function seleccionarImagen(file) {
+
+      archivoSeleccionado =
+        file;
+
+
+      imagenSeleccionada.src =
+        file.download_url;
+
+      imagenSeleccionada.alt =
+        file.name;
+
+
+      // El nombre viene directamente
+      // de GitHub y no se puede modificar.
+
+      archivoProducto.value =
+        file.name;
+
+
+      // Limpiar formulario
+
+      nombreProducto.value =
+        "";
+
+      descripcionProducto.value =
+        "";
+
+      precioProducto.value =
+        "";
+
+      categoriaProducto.value =
+        "";
+
+      marcaProducto.value =
+        "";
+
+      codigoProducto.value =
+        "";
+
+
+      mensajeFormulario.textContent =
+        "";
+
+
+      formularioProducto.classList.add(
+        "visible"
+      );
+
+
+      formularioProducto.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+
+      nombreProducto.focus();
+
+    }
+
+
+    // ==================================================
+    // CANCELAR FORMULARIO
+    // ==================================================
+
+    cancelarFormulario.addEventListener(
+      "click",
+      () => {
+
+        formularioProducto.classList.remove(
+          "visible"
+        );
+
+        archivoSeleccionado =
+          null;
+
+      }
+    );
+
+
+    // ==================================================
+    // GUARDAR PRODUCTO
+    // ==================================================
+
+    guardarProducto.addEventListener(
+      "click",
+      async () => {
+
+        // ----------------------------------------------
+        // Comprobar selección
+        // ----------------------------------------------
+
+        if (!archivoSeleccionado) {
+
+          mensajeFormulario.textContent =
+            "Selecciona una imagen.";
+
+          return;
+
+        }
+
+
+        // ----------------------------------------------
+        // Obtener datos
+        // ----------------------------------------------
+
+        const nombre =
+          nombreProducto.value.trim();
+
+        const descripcion =
+          descripcionProducto.value.trim();
+
+        const precioTexto =
+          precioProducto.value.trim();
+
+        const categoria =
+          categoriaProducto.value;
+
+        const marca =
+          marcaProducto.value.trim();
+
+        const codigo =
+          codigoProducto.value.trim();
+
+
+        // ----------------------------------------------
+        // Validar obligatorios
+        // ----------------------------------------------
+
+        if (
+          !nombre ||
+          !descripcion ||
+          !precioTexto ||
+          !categoria ||
+          !codigo
+        ) {
+
+          mensajeFormulario.textContent =
+            "Completa todos los campos obligatorios (*).";
+
+          return;
+
+        }
+
+
+        // ----------------------------------------------
+        // Validar precio
+        // ----------------------------------------------
+
+        const precio =
+          Number(precioTexto);
+
+
+        if (
+          !Number.isFinite(precio) ||
+          precio < 0
+        ) {
+
+          mensajeFormulario.textContent =
+            "El precio no es válido.";
+
+          return;
+
+        }
+
+
+        // ----------------------------------------------
+        // Comprobar código duplicado
+        // ----------------------------------------------
+
+        const codigoExiste =
+          productos.some(
+            producto =>
+              String(producto.codigo)
+                .toLowerCase() ===
+              codigo.toLowerCase()
+          );
+
+
+        if (codigoExiste) {
+
+          mensajeFormulario.textContent =
+            "⚠️ Ese código de producto ya existe.";
+
+          return;
+
+        }
+
+
+        // ----------------------------------------------
+        // Comprobar nuevamente el nombre de imagen
+        // ----------------------------------------------
+
+        const imagenExiste =
+          productos.some(
+            producto =>
+              producto.imagen ===
+              archivoSeleccionado.name
+          );
+
+
+        if (imagenExiste) {
+
+          mensajeFormulario.textContent =
+            "⚠️ Esta imagen ya tiene un registro.";
+
+          return;
+
+        }
+
+
+        // ----------------------------------------------
+        // Crear nuevo registro
+        // ----------------------------------------------
+
+        const nuevoProducto = {
+
+          imagen:
+            archivoSeleccionado.name,
+
+          nombre:
+            nombre,
+
+          descripcion:
+            descripcion,
+
+          precio:
+            precio,
+
+          categoria:
+            categoria,
+
+          marca:
+            marca,
+
+          codigo:
+            codigo
+
+        };
+
+
+        // ----------------------------------------------
+        // Confirmación
+        // ----------------------------------------------
+
+        const confirmar =
+          confirm(
+            `¿Guardar este producto?\n\n` +
+            `Imagen: ${nuevoProducto.imagen}\n` +
+            `Nombre: ${nuevoProducto.nombre}\n` +
+            `Precio: $${nuevoProducto.precio.toFixed(2)}\n` +
+            `Categoría: ${nuevoProducto.categoria}\n` +
+            `Código: ${nuevoProducto.codigo}`
+          );
+
+
+        if (!confirmar) {
+
+          return;
+
+        }
+
+
+        guardarProducto.disabled =
+          true;
+
+        cancelarFormulario.disabled =
+          true;
+
+
+        mensajeFormulario.textContent =
+          "Guardando en GitHub...";
+
+
+        try {
+
+          // --------------------------------------------
+          // Agregar producto al arreglo
+          // --------------------------------------------
+
+          const productosActualizados =
+            [
+              ...productos,
+              nuevoProducto
+            ];
+
+
+          // --------------------------------------------
+          // Convertir a JSON
+          // --------------------------------------------
+
+          const nuevoContenido =
+            JSON.stringify(
+              productosActualizados,
+              null,
+              2
+            ) + "\n";
+
+
+          // --------------------------------------------
+          // Codificar UTF-8 en Base64
+          // --------------------------------------------
+
+          const contenidoBase64 =
+            codificarBase64(
+              nuevoContenido
+            );
+
+
+          // --------------------------------------------
+          // Actualizar productos.json
+          // --------------------------------------------
+
+          const respuesta =
+            await fetch(
+              urlProductos,
+              {
+
+                method: "PUT",
+
+                headers: {
+
+                  ...encabezadosGitHub(),
+
+                  "Content-Type":
+                    "application/json"
+
+                },
+
+                body:
+                  JSON.stringify({
+
+                    message:
+                      `Agregar producto ${nuevoProducto.codigo}`,
+
+                    content:
+                      contenidoBase64,
+
+                    sha:
+                      shaProductos,
+
+                    branch:
+                      rama
+
+                  })
+
+              }
+            );
+
+
+          // --------------------------------------------
+          // Comprobar resultado
+          // --------------------------------------------
+
+          if (!respuesta.ok) {
+
+            const errorGitHub =
+              await respuesta.json()
+                .catch(() => null);
+
+
+            throw new Error(
+              errorGitHub?.message ||
+              `GitHub respondió ${respuesta.status}`
+            );
+
+          }
+
+
+          // --------------------------------------------
+          // Éxito
+          // --------------------------------------------
+
+          mensajeFormulario.textContent =
+            "✓ Producto guardado correctamente en GitHub.";
+
+
+          // Actualizar datos locales
+
+          productos.push(
+            nuevoProducto
+          );
+
+
+          shaProductos =
+            (
+              await respuesta.json()
+            ).content.sha;
+
+
+          // Cerrar formulario después
+          // de un momento
+
+          setTimeout(
+            async () => {
+
+              formularioProducto.classList.remove(
+                "visible"
+              );
+
+              archivoSeleccionado =
+                null;
+
+              await revisarCatalogo();
+
+            },
+            1200
+          );
+
+        }
+
+        catch (error) {
+
+          console.error(error);
+
+          mensajeFormulario.textContent =
+            "❌ No se pudo guardar: " +
+            error.message;
+
+        }
+
+        finally {
+
+          guardarProducto.disabled =
+            false;
+
+          cancelarFormulario.disabled =
+            false;
+
+        }
+
+      }
+    );
+
+
+    // ==================================================
+    // ACTUALIZAR REVISIÓN
+    // ==================================================
+
+    actualizar.addEventListener(
+      "click",
+      revisarCatalogo
+    );
 
   </script>
 
 </body>
+
 </html>
