@@ -97,5 +97,14 @@
     "categoria": "Escolares",
     "marca": "Generica",
     "codigo": "Circo011"
+  },
+  {
+    "imagen": "0075 plumas gel de colores.jpeg",
+    "nombre": "12 Plumas de Gel 0.4 mm — Colores Surtidos",
+    "descripcion": "Escribe con precisión y dale color a tus apuntes con estas plumas de gel de punta fina de 0.4 mm. Su punta permite realizar trazos delgados y definidos, ideales para escribir con detalle, organizar apuntes, hacer dibujos, lettering y proyectos creativos.🌈 Colores surtidos",
+    "precio": 95,
+    "categoria": "Escolares",
+    "marca": "generico",
+    "codigo": "Circo01-10"
   }
 ]
