@@ -3,16 +3,16 @@
     "imagen": "0099-test-prueba.jpg",
     "nombre": "Producto de prueba 0099",
     "descripcion": "Esta es la descripción del producto de prueba número 0099.",
-    "precio": 99.00,
+    "precio": 99,
     "categoria": "Accesorios Personales",
     "marca": "Marca de prueba",
     "codigo": "PROD-0099"
   },
-    {
+  {
     "imagen": "0001 Mochila escolar azul.jpeg",
     "nombre": "Mochila escolar azul",
     "descripcion": "Mochila escolar amplia con diseño juvenil y deportivo. Cuenta con compartimento principal, bolsillos frontales, tirantes ajustables y respaldo acolchado. Ideal para transportar libros, cuadernos, útiles escolares y artículos personales. Medidas aprox 45 × 32 × 25 cm.",
-    "precio": 150.00,
+    "precio": 150,
     "categoria": "Escolares",
     "marca": "RONGLIDA",
     "codigo": "Mesa-000"
@@ -21,7 +21,7 @@
     "imagen": "0005 Mochila escolar roja.jpeg",
     "nombre": "Mochila escolar roja",
     "descripcion": "Mochila escolar amplia con diseño juvenil y deportivo. Cuenta con compartimento principal, bolsillos frontales, tirantes ajustables y respaldo acolchado. Ideal para transportar libros, cuadernos, útiles escolares y artículos personales. Medidas aprox 45 × 32 × 25 cm.",
-    "precio": 150.00,
+    "precio": 150,
     "categoria": "Escolares",
     "marca": "RONGLIDA",
     "codigo": "Mesa-000"
@@ -30,34 +30,34 @@
     "imagen": "0010 Mochila escolar reforzada negra.jpeg",
     "nombre": "Mochila Reforzada Negra con Múltiples Compartimentos",
     "descripcion": "Mochila amplia, práctica y resistente, ideal para escuela, trabajo, universidad o uso diario. Cuenta con varios compartimentos y cierres reforzados con jaladeras metálicas, además de una agarradera superior reforzada para mayor seguridad al transportarla, tirantes ajustables y respaldo acolchado. Su diseño completamente negro le da una apariencia discreta y versátil, adecuada para diferentes usos. Medidas Aprox. 45 × 32 × 18 cm",
-    "precio": 250.00,
+    "precio": 250,
     "categoria": "Escolares",
     "marca": "Generica",
     "codigo": "Mesa-000"
   },
-    {
+  {
     "imagen": "0011 Mochila escolar reforzada cafe.jpeg.jpeg",
     "nombre": "Mochila Reforzada café con Múltiples Compartimentos",
     "descripcion": "Mochila amplia, práctica y resistente, ideal para escuela, trabajo, universidad o uso diario. Cuenta con varios compartimentos y cierres reforzados con jaladeras metálicas, además de una agarradera superior reforzada para mayor seguridad al transportarla, tirantes ajustables y respaldo acolchado. Su diseño completamente negro le da una apariencia discreta y versátil, adecuada para diferentes usos. Medidas Aprox. 45 × 32 × 18 cm",
-    "precio": 250.00,
+    "precio": 250,
     "categoria": "Escolares",
     "marca": "Generica",
     "codigo": "Mesa-000"
   },
-      {
+  {
     "imagen": "0025 Marcatexto.jpeg",
     "nombre": "Marcatextos en Cinta — Color Neón",
     "descripcion": "Dale color a tus apuntes y documentos con este práctico marcatextos en cinta. Cuenta con 3 metros de cinta de 5 mm de ancho, ideal para resaltar información importante de manera precisa y ordenada. Su diseño compacto permite llevarlo fácilmente a la escuela, oficina o cualquier lugar. 🌈 Disponible en diferentes colores neón.",
-    "precio": 35.00,
+    "precio": 35,
     "categoria": "Escolares",
     "marca": "PA-MATECIN120",
     "codigo": "Mesa-000"
   },
-        {
+  {
     "imagen": "0020 Mochila escolar reforzada-candado.jpeg",
     "nombre": "Mochila Gris con Candado Integrado y Múltiples Compartimentos",
     "descripcion": "Mochila práctica, moderna y funcional, ideal para escuela, universidad, trabajo o uso diario. Cuenta con candado integrado para asegurar el compartimento principal, además de varios bolsillos y compartimentos que facilitan la organización de tus pertenencias. Su agarradera superior acolchada y sus tirantes permiten transportarla cómodamente. Medidas Aprox. 45 × 32 × 18 cm",
-    "precio": 295.00,
+    "precio": 295,
     "categoria": "Escolares",
     "marca": "Generica",
     "codigo": "Mesa-000"
@@ -66,7 +66,7 @@
     "imagen": "0100-Flor-prueba.jpg",
     "nombre": "Producto de prueba 0100",
     "descripcion": "Esta es la descripción del producto de prueba número 0100.",
-    "precio": 99.00,
+    "precio": 99,
     "categoria": "Accesorios Computadora",
     "marca": "Marca de prueba",
     "codigo": "PROD-0099"
@@ -75,9 +75,18 @@
     "imagen": "0299-test-prueba.jpg",
     "nombre": "Producto de prueba 0299",
     "descripcion": "Esta es la descripción del producto de prueba número 0299.",
-    "precio": 299.00,
+    "precio": 299,
     "categoria": "Escolares",
     "marca": "Marca de prueba",
     "codigo": "PROD-0299"
+  },
+  {
+    "imagen": "0030 Marcatexto.jpeg",
+    "nombre": "Set de 6 Marcatextos Pastel — Colores Surtidos",
+    "descripcion": "Dale un toque de color a tus apuntes con este práctico set de 6 marcatextos en tonos pastel. Cada marcatexto tiene un color diferente y su diseño compacto en forma de bolita de helado los hace fáciles de sujetar y transportar.",
+    "precio": 45,
+    "categoria": "Escolares",
+    "marca": "Generico",
+    "codigo": "Circo01"
   }
 ]
