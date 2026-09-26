@@ -88,5 +88,14 @@
     "categoria": "Escolares",
     "marca": "Generico",
     "codigo": "Circo01"
+  },
+  {
+    "imagen": "0050 engrapadora pequeña.jpeg",
+    "nombre": "Mini Engrapadora con Grapas — Colores Pastel",
+    "descripcion": "Práctica mini engrapadora, perfecta para tener en casa, la escuela o la oficina. Su diseño compacto permite transportarla fácilmente y guardarla sin ocupar mucho espacio. Incluye una caja de grapas para que puedas utilizarla desde el primer momento.🌈 Disponible en diferentes colores pastel.\nEl precio que se muestra en este anuncio es por cada engrapadora.",
+    "precio": 25,
+    "categoria": "Escolares",
+    "marca": "Generica",
+    "codigo": "Circo011"
   }
 ]
