@@ -115,5 +115,14 @@
     "categoria": "Escolares",
     "marca": "QIHAO",
     "codigo": "CIRCO01-11"
+  },
+  {
+    "imagen": "0100 Calculadora cientifica.jpeg",
+    "nombre": "Calculadora Científica JOINUS 240 Funciones — Rosa",
+    "descripcion": "🧮 Calculadora Científica JOINUS — 240 Funciones\nCalculadora científica JOINUS con 240 funciones, diseñada para facilitar la realización de operaciones matemáticas y científicas. Su formato compacto y ligero permite llevarla fácilmente a clases, exámenes o utilizarla para tareas y ejercicios en casa.\n🔢 240 funciones\n📐 Funciones matemáticas y científicas\n🖥️ Pantalla de fácil lectura\n🛡️ Cubierta protectora\n🌸 Color rosa con blanco\n🎓 Ideal para estudiantes",
+    "precio": 90,
+    "categoria": "Escolares",
+    "marca": "JOINUS",
+    "codigo": "CIRCO01-12"
   }
 ]
