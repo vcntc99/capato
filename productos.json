@@ -133,5 +133,14 @@
     "categoria": "Escolares",
     "marca": "Genérico",
     "codigo": "CIRCO12"
+  },
+  {
+    "imagen": "0125 Correctores.jpeg",
+    "nombre": "Corrector en Cinta 8 m — Colores Surtidos",
+    "descripcion": "✏️ Corrector en Cinta de 8 Metros\nCorrige tus apuntes, tareas y documentos de forma rápida, limpia y precisa. Su práctico diseño tipo dispensador permite aplicar la cinta directamente sobre el papel y escribir inmediatamente sobre la superficie corregida. El precio mostrado es por unidad.\n📏 8 metros de cinta\n✏️ Aplicación limpia y precisa\n🖐️ Diseño cómodo de utilizar\n🎒 Compacto y fácil de transportar\n🌈 Diferentes colores disponibles",
+    "precio": 20,
+    "categoria": "Escolares",
+    "marca": "Genérica",
+    "codigo": "Circo01-13"
   }
 ]
