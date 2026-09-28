@@ -61,14 +61,14 @@ const codigoProducto =
 const whatsappProducto =
   document.getElementById("whatsappProducto");
 
-
 // ======================================================
-// FILTROS
+// FILTROS Y CATEGORÍAS
 // ======================================================
 
-const botonesFiltro =
-  document.querySelectorAll(".filtro");
+const filtros =
+  document.getElementById("filtros");
 
+let categorias = [];
 
 // ======================================================
 // VARIABLES DEL CATÁLOGO
@@ -88,6 +88,96 @@ let archivosImagenes = [];
 
 let categoriaActual = "Todos";
 
+// ======================================================
+// CREAR FILTROS DESDE categorias.json
+// ======================================================
+
+function crearFiltros() {
+
+  filtros.innerHTML = "";
+
+  // -----------------------------------------------
+  // Botón TODOS
+  // -----------------------------------------------
+
+  const botonTodos =
+    document.createElement("button");
+
+  botonTodos.className =
+    "filtro activo";
+
+  botonTodos.dataset.categoria =
+    "Todos";
+
+  botonTodos.textContent =
+    "Todos";
+
+  filtros.appendChild(
+    botonTodos
+  );
+
+
+  // -----------------------------------------------
+  // Crear categorías
+  // -----------------------------------------------
+
+  categorias.forEach(categoria => {
+
+    const boton =
+      document.createElement("button");
+
+    boton.className =
+      "filtro";
+
+    boton.dataset.categoria =
+      categoria;
+
+    boton.textContent =
+      categoria;
+
+    filtros.appendChild(
+      boton
+    );
+
+  });
+
+
+  // -----------------------------------------------
+  // Activar comportamiento
+  // -----------------------------------------------
+
+  const botonesFiltro =
+    filtros.querySelectorAll(".filtro");
+
+
+  botonesFiltro.forEach(boton => {
+
+    boton.addEventListener(
+      "click",
+      () => {
+
+        categoriaActual =
+          boton.dataset.categoria;
+
+
+        botonesFiltro.forEach(
+          b => b.classList.remove("activo")
+        );
+
+
+        boton.classList.add(
+          "activo"
+        );
+
+
+        mostrarProductos();
+
+      }
+    );
+
+  });
+
+}
 
 // ======================================================
 // FUNCIÓN PARA ABRIR UN PRODUCTO
@@ -327,53 +417,6 @@ function mostrarProductos() {
   }
 
 }
-
-
-// ======================================================
-// ACTIVAR FILTROS
-// ======================================================
-
-botonesFiltro.forEach(boton => {
-
-  boton.addEventListener(
-    "click",
-    () => {
-
-      // -----------------------------------------------
-      // Obtener categoría seleccionada
-      // -----------------------------------------------
-
-      categoriaActual =
-        boton.dataset.categoria;
-
-
-      // -----------------------------------------------
-      // Quitar estado activo de todos
-      // -----------------------------------------------
-
-      botonesFiltro.forEach(
-        b => b.classList.remove("activo")
-      );
-
-
-      // -----------------------------------------------
-      // Activar únicamente el seleccionado
-      // -----------------------------------------------
-
-      boton.classList.add("activo");
-
-
-      // -----------------------------------------------
-      // Mostrar productos
-      // -----------------------------------------------
-
-      mostrarProductos();
-
-    }
-  );
-
-});
-
 
 // ======================================================
 // CARGAR PRODUCTOS
