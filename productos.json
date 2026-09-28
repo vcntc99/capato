@@ -187,5 +187,14 @@
     "categoria": "Juguetes",
     "marca": "Genérico",
     "codigo": "REP3Ent-0650"
+  },
+  {
+    "imagen": "1150 - entrevistas.jpeg",
+    "nombre": "🎥 Kit para Creación de Video AY-40",
+    "descripcion": "Lleva tus grabaciones al siguiente nivel con este práctico Video-Making Kit, diseñado para crear videos y realizar transmisiones en vivo utilizando tu teléfono celular. Incluye accesorios de montaje y luz LED, ayudando a mejorar la iluminación y presentación de tus videos.\n📱 Ideal para creadores de contenido\n💡 Luz LED para mejorar la iluminación\n🎥 Para videos y transmisiones en vivo\n🔩 Montaje con rosca de 1/4\"\n📦 Presentación individual",
+    "precio": 150,
+    "categoria": "Accesorios Teléfono",
+    "marca": "AY-49",
+    "codigo": "EST3-1150"
   }
 ]
