@@ -422,7 +422,29 @@ function mostrarProductos() {
 // CARGAR PRODUCTOS
 // ======================================================
 
-fetch("productos.json")
+fetch("categorias.json")
+  .then(res => {
+
+    if (!res.ok) {
+      throw new Error(
+        "No se pudo cargar categorias.json"
+      );
+    }
+
+    return res.json();
+
+  })
+
+  .then(dataCategorias => {
+
+    categorias =
+      dataCategorias;
+
+    crearFiltros();
+
+    return fetch("productos.json");
+
+  })
 
   .then(res => res.json())
 
