@@ -259,5 +259,14 @@
     "categoria": "Accesorios Personales",
     "marca": "YONGLE",
     "codigo": "REP3-2370"
+  },
+  {
+    "imagen": "0099-test-prueba.jpg",
+    "nombre": "prueba nueva",
+    "descripcion": "prueba de edicion",
+    "precio": 45,
+    "categoria": "Juguetes",
+    "marca": "genérico",
+    "codigo": "cisco1-00991"
   }
 ]
