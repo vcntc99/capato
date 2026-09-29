@@ -6,7 +6,7 @@
     "precio": 150,
     "categoria": "Escolares",
     "marca": "RONGLIDA",
-    "codigo": "Mesa-000"
+    "codigo": "Mesa0-0001"
   },
   {
     "imagen": "0005 Mochila escolar roja.jpeg",
@@ -15,7 +15,7 @@
     "precio": 150,
     "categoria": "Escolares",
     "marca": "RONGLIDA",
-    "codigo": "Mesa-000"
+    "codigo": "Mesa0-0005"
   },
   {
     "imagen": "0010 Mochila escolar reforzada negra.jpeg",
@@ -24,7 +24,7 @@
     "precio": 250,
     "categoria": "Escolares",
     "marca": "Generica",
-    "codigo": "Mesa-000"
+    "codigo": "Mesa0-0010"
   },
   {
     "imagen": "0011 Mochila escolar reforzada cafe.jpeg.jpeg",
@@ -33,7 +33,7 @@
     "precio": 250,
     "categoria": "Escolares",
     "marca": "Generica",
-    "codigo": "Mesa-000"
+    "codigo": "Mesa0-0011"
   },
   {
     "imagen": "0025 Marcatexto.jpeg",
@@ -42,7 +42,7 @@
     "precio": 35,
     "categoria": "Escolares",
     "marca": "PA-MATECIN120",
-    "codigo": "Mesa-000"
+    "codigo": "Mesa0-0025"
   },
   {
     "imagen": "0020 Mochila escolar reforzada-candado.jpeg",
@@ -51,7 +51,7 @@
     "precio": 295,
     "categoria": "Escolares",
     "marca": "Generica",
-    "codigo": "Mesa-000"
+    "codigo": "Mesa0-0020"
   },
   {
     "imagen": "0030 Marcatexto.jpeg",
@@ -60,7 +60,7 @@
     "precio": 45,
     "categoria": "Escolares",
     "marca": "Generico",
-    "codigo": "Circo01"
+    "codigo": "Circo1-0030"
   },
   {
     "imagen": "0050 engrapadora pequeña.jpeg",
@@ -69,7 +69,7 @@
     "precio": 25,
     "categoria": "Escolares",
     "marca": "Generica",
-    "codigo": "Circo011"
+    "codigo": "Circo1-0050"
   },
   {
     "imagen": "0075 plumas gel de colores.jpeg",
@@ -78,7 +78,7 @@
     "precio": 95,
     "categoria": "Escolares",
     "marca": "generico",
-    "codigo": "Circo01-10"
+    "codigo": "Circo1-0075"
   },
   {
     "imagen": "0090 Gomas borrar.jpeg",
@@ -87,7 +87,7 @@
     "precio": 40,
     "categoria": "Escolares",
     "marca": "QIHAO",
-    "codigo": "CIRCO01-11"
+    "codigo": "CIRCO1-0090"
   },
   {
     "imagen": "0100 Calculadora cientifica.jpeg",
@@ -96,7 +96,7 @@
     "precio": 90,
     "categoria": "Escolares",
     "marca": "JOINUS",
-    "codigo": "CIRCO01-12"
+    "codigo": "CIRCO1-0100"
   },
   {
     "imagen": "0120 Correctores Combo.jpeg",
@@ -105,7 +105,7 @@
     "precio": 25,
     "categoria": "Escolares",
     "marca": "Genérico",
-    "codigo": "CIRCO12"
+    "codigo": "CIRCO1-0120"
   },
   {
     "imagen": "0125 Correctores.jpeg",
@@ -114,7 +114,7 @@
     "precio": 20,
     "categoria": "Escolares",
     "marca": "Genérica",
-    "codigo": "Circo01-13"
+    "codigo": "Circo1-0125"
   },
   {
     "imagen": "0650 Gorras equipos.jpeg",
@@ -123,7 +123,7 @@
     "precio": 195,
     "categoria": "Accesorios Personales",
     "marca": "Propia",
-    "codigo": "Mesa03-1"
+    "codigo": "Mesa03-0650"
   },
   {
     "imagen": "0655 Gorras genericas.jpeg",
@@ -132,7 +132,7 @@
     "precio": 75,
     "categoria": "Accesorios Personales",
     "marca": "Genérica",
-    "codigo": "Mesa03-2"
+    "codigo": "Mesa03-0655"
   },
   {
     "imagen": "0660 Gorras 2 en 1.jpeg",
@@ -141,7 +141,7 @@
     "precio": 80,
     "categoria": "Accesorios Personales",
     "marca": "Duo Sports",
-    "codigo": "Circo3-5"
+    "codigo": "Mesa03-0660"
   },
   {
     "imagen": "0350 - sonajas bebe.jpeg",
