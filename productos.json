@@ -262,11 +262,11 @@
   },
   {
     "imagen": "0099-test-prueba.jpg",
-    "nombre": "prueba nueva de edicion",
-    "descripcion": "prueba de edicion y prueba",
+    "nombre": "prueba nueva de edicion xxx",
+    "descripcion": "prueba de edicion y prueba xxx",
     "precio": 745,
     "categoria": "Juguetes",
-    "marca": "genérico",
+    "marca": "genérico xxx",
     "codigo": "circo1-00991"
   }
 ]
