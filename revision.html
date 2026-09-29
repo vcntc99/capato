@@ -2498,21 +2498,22 @@ if (productoEditando) {
   // Estamos editando un producto existente
 
   productosActualizados =
-    productos.map(
-      producto => {
+  productos.map(
+    producto => {
 
-        if (
-          producto ===
-          productoEditando
-        ) {
+      if (
+        productoEditando &&
+        producto.imagen ===
+        productoEditando.imagen
+      ) {
 
-          return productoGuardar;
-
-        }
-
-        return producto;
+        return productoGuardar;
 
       }
+
+      return producto;
+
+    }
     );
 
 }
