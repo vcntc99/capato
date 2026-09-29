@@ -2053,7 +2053,7 @@ function crearTarjetaProducto(
 
     }
 
-    // ==================================================
+// ==================================================
 // EDITAR PRODUCTO
 // ==================================================
 
@@ -2360,13 +2360,30 @@ function editarProducto(producto) {
         // ----------------------------------------------
 
         const codigoExiste =
-          productos.some(
-            producto =>
-              String(producto.codigo)
-                .toLowerCase() ===
-              codigo.toLowerCase()
-          );
+  productos.some(
+    producto => {
 
+      // Si estamos editando,
+      // ignorar el propio producto.
+
+      if (
+        productoEditando &&
+        producto === productoEditando
+      ) {
+
+        return false;
+
+      }
+
+
+      return (
+        String(producto.codigo)
+          .toLowerCase() ===
+        codigo.toLowerCase()
+      );
+
+    }
+  );
 
         if (codigoExiste) {
 
