@@ -946,12 +946,25 @@ async function cargarCategorias() {
 
         }
 
-
         token =
-          tokenIntroducido;
+  tokenIntroducido;
 
+try {
 
-        await revisarCatalogo();
+  await cargarCategorias();
+
+  await revisarCatalogo();
+
+}
+catch (error) {
+
+  console.error(error);
+
+  estado.textContent =
+    "Error: " +
+    error.message;
+
+}
 
       }
     );
