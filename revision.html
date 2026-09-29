@@ -400,6 +400,133 @@
 
     }
 
+/* ==================================================
+   PRODUCTOS REGISTRADOS
+   ================================================== */
+
+#productosRegistrados {
+
+  margin-top: 35px;
+
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  border: 1px solid #ddd;
+
+}
+
+
+.busquedaProductos {
+
+  margin-bottom: 10px;
+
+}
+
+
+#buscarProducto {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+}
+
+
+#contadorProductos {
+
+  color: #666;
+
+  font-size: 14px;
+
+}
+
+
+#galeriaProductos {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(220px, 1fr)
+    );
+
+  gap: 15px;
+
+}
+
+
+.tarjetaProducto {
+
+  background: #f8f8f8;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ddd;
+
+}
+
+
+.tarjetaProducto img {
+
+  width: 100%;
+
+  height: 200px;
+
+  object-fit: contain;
+
+  border-radius: 8px;
+
+  background: white;
+
+}
+
+
+.nombreProductoAdmin {
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  margin: 10px 0 5px;
+
+}
+
+
+.datoProductoAdmin {
+
+  font-size: 14px;
+
+  margin: 4px 0;
+
+}
+
+
+.botonEditar {
+
+  width: 100%;
+
+  margin-top: 10px;
+
+}
+
+
+/* ==================================================
+   CELULARES
+   ================================================== */
 
     /* ==================================================
        CELULARES
@@ -818,6 +945,20 @@
         "galeriaRevision"
       );
 
+    const galeriaProductos =
+  document.getElementById(
+    "galeriaProductos"
+  );
+
+const buscarProducto =
+  document.getElementById(
+    "buscarProducto"
+  );
+
+const contadorProductos =
+  document.getElementById(
+    "contadorProductos"
+  );
 
     const formularioProducto =
       document.getElementById(
