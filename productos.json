@@ -262,8 +262,8 @@
   },
   {
     "imagen": "0099-test-prueba.jpg",
-    "nombre": "prueba nueva",
-    "descripcion": "prueba de edicion",
+    "nombre": "prueba nueva de edicion",
+    "descripcion": "prueba de edicion y prueba",
     "precio": 45,
     "categoria": "Juguetes",
     "marca": "genérico",
