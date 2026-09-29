@@ -1445,7 +1445,250 @@ function codificarBase64(texto) {
         estado.textContent =
           `${imagenesSinRegistro.length} imagen(es) sin registro. Pulsa una imagen para agregarla.`;
 
+// ==================================================
+// MOSTRAR PRODUCTOS REGISTRADOS
+// ==================================================
 
+function mostrarProductosRegistrados(
+  textoBusqueda = ""
+) {
+
+  galeriaProductos.innerHTML = "";
+
+  const texto =
+    textoBusqueda
+      .trim()
+      .toLowerCase();
+
+
+  const productosFiltrados =
+    productos.filter(
+      producto => {
+
+        const nombre =
+          String(
+            producto.nombre || ""
+          ).toLowerCase();
+
+        const codigo =
+          String(
+            producto.codigo || ""
+          ).toLowerCase();
+
+        const categoria =
+          String(
+            producto.categoria || ""
+          ).toLowerCase();
+
+        const marca =
+          String(
+            producto.marca || ""
+          ).toLowerCase();
+
+
+        return (
+          !texto ||
+          nombre.includes(texto) ||
+          codigo.includes(texto) ||
+          categoria.includes(texto) ||
+          marca.includes(texto)
+        );
+
+      }
+    );
+
+
+  contadorProductos.textContent =
+    `${productosFiltrados.length} producto(s)`;
+
+
+  productosFiltrados.forEach(
+    producto => {
+
+      crearTarjetaProducto(
+        producto
+      );
+
+    }
+  );
+
+}
+
+// ==================================================
+// CREAR TARJETA DE PRODUCTO
+// ==================================================
+
+function crearTarjetaProducto(
+  producto
+) {
+
+  const tarjeta =
+    document.createElement(
+      "div"
+    );
+
+  tarjeta.className =
+    "tarjetaProducto";
+
+
+  const imagen =
+    document.createElement(
+      "img"
+    );
+
+
+  const archivo =
+    archivosImagenes.find(
+      file =>
+        file.name ===
+        producto.imagen
+    );
+
+
+  if (archivo) {
+
+    imagen.src =
+      archivo.download_url;
+
+  }
+  else {
+
+    imagen.alt =
+      "Imagen no encontrada";
+
+  }
+
+
+  imagen.alt =
+    producto.nombre ||
+    producto.imagen;
+
+
+  const nombre =
+    document.createElement(
+      "p"
+    );
+
+  nombre.className =
+    "nombreProductoAdmin";
+
+  nombre.textContent =
+    producto.nombre;
+
+
+  const codigo =
+    document.createElement(
+      "p"
+    );
+
+  codigo.className =
+    "datoProductoAdmin";
+
+  codigo.textContent =
+    `Código: ${producto.codigo}`;
+
+
+  const precio =
+    document.createElement(
+      "p"
+    );
+
+  precio.className =
+    "datoProductoAdmin";
+
+  precio.textContent =
+    `Precio: $${Number(
+      producto.precio || 0
+    ).toFixed(2)}`;
+
+
+  const categoria =
+    document.createElement(
+      "p"
+    );
+
+  categoria.className =
+    "datoProductoAdmin";
+
+  categoria.textContent =
+    `Categoría: ${
+      producto.categoria || ""
+    }`;
+
+
+  const marca =
+    document.createElement(
+      "p"
+    );
+
+  marca.className =
+    "datoProductoAdmin";
+
+  marca.textContent =
+    `Marca: ${
+      producto.marca || "Sin marca"
+    }`;
+
+
+  const boton =
+    document.createElement(
+      "button"
+    );
+
+  boton.className =
+    "botonEditar";
+
+  boton.textContent =
+    "Editar";
+
+
+  boton.addEventListener(
+    "click",
+    () => {
+
+      editarProducto(
+        producto
+      );
+
+    }
+  );
+
+
+  tarjeta.appendChild(
+    imagen
+  );
+
+  tarjeta.appendChild(
+    nombre
+  );
+
+  tarjeta.appendChild(
+    codigo
+  );
+
+  tarjeta.appendChild(
+    precio
+  );
+
+  tarjeta.appendChild(
+    categoria
+  );
+
+  tarjeta.appendChild(
+    marca
+  );
+
+  tarjeta.appendChild(
+    boton
+  );
+
+
+  galeriaProductos.appendChild(
+    tarjeta
+  );
+
+}
+        
         // ----------------------------------------------
         // Crear tarjetas
         // ----------------------------------------------
