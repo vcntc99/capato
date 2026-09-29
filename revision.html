@@ -2053,6 +2053,120 @@ function crearTarjetaProducto(
 
     }
 
+    // ==================================================
+// EDITAR PRODUCTO
+// ==================================================
+
+function editarProducto(producto) {
+
+  productoEditando =
+    producto;
+
+
+  // ----------------------------------------------
+  // Buscar la imagen correspondiente
+  // ----------------------------------------------
+
+  const archivo =
+    archivosImagenes.find(
+      file =>
+        file.name ===
+        producto.imagen
+    );
+
+
+  if (archivo) {
+
+    archivoSeleccionado =
+      archivo;
+
+    imagenSeleccionada.src =
+      archivo.download_url;
+
+    imagenSeleccionada.alt =
+      producto.nombre;
+
+  }
+  else {
+
+    archivoSeleccionado =
+      {
+        name: producto.imagen
+      };
+
+    imagenSeleccionada.src =
+      "";
+
+    imagenSeleccionada.alt =
+      producto.imagen;
+
+  }
+
+
+  // ----------------------------------------------
+  // Cambiar título del formulario
+  // ----------------------------------------------
+
+  tituloFormulario.textContent =
+    "Editar producto";
+
+
+  // ----------------------------------------------
+  // Cambiar botón
+  // ----------------------------------------------
+
+  guardarProducto.textContent =
+    "Guardar cambios";
+
+
+  // ----------------------------------------------
+  // Cargar datos
+  // ----------------------------------------------
+
+  archivoProducto.value =
+    producto.imagen;
+
+  nombreProducto.value =
+    producto.nombre || "";
+
+  descripcionProducto.value =
+    producto.descripcion || "";
+
+  precioProducto.value =
+    producto.precio ?? "";
+
+  categoriaProducto.value =
+    producto.categoria || "";
+
+  marcaProducto.value =
+    producto.marca || "";
+
+  codigoProducto.value =
+    producto.codigo || "";
+
+
+  mensajeFormulario.textContent =
+    "";
+
+
+  // ----------------------------------------------
+  // Mostrar formulario
+  // ----------------------------------------------
+
+  formularioProducto.classList.add(
+    "visible"
+  );
+
+
+  formularioProducto.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+
+  nombreProducto.focus();
+
+}
 
     // ==================================================
     // SELECCIONAR IMAGEN
