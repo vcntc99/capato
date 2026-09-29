@@ -2399,23 +2399,26 @@ function editarProducto(producto) {
         // Comprobar nuevamente el nombre de imagen
         // ----------------------------------------------
 
-        const imagenExiste =
-          productos.some(
-            producto =>
-              producto.imagen ===
-              archivoSeleccionado.name
-          );
+        if (!productoEditando) {
+
+  const imagenExiste =
+    productos.some(
+      producto =>
+        producto.imagen ===
+        archivoSeleccionado.name
+    );
 
 
-        if (imagenExiste) {
+  if (imagenExiste) {
 
-          mensajeFormulario.textContent =
-            "⚠️ Esta imagen ya tiene un registro.";
+    mensajeFormulario.textContent =
+      "⚠️ Esta imagen ya tiene un registro.";
 
-          return;
+    return;
 
-        }
+  }
 
+}
 
         // ----------------------------------------------
         // Crear nuevo registro
