@@ -1331,6 +1331,13 @@ function codificarBase64(texto) {
 
           });
 
+// ----------------------------------------------
+// Mostrar productos registrados
+// ----------------------------------------------
+
+mostrarProductosRegistrados(
+  buscarProducto.value
+);
 
         // ----------------------------------------------
         // Nombres registrados
@@ -2234,6 +2241,20 @@ function crearTarjetaProducto(
       }
     );
 
+// ==================================================
+// BUSCAR PRODUCTOS
+// ==================================================
+
+buscarProducto.addEventListener(
+  "input",
+  () => {
+
+    mostrarProductosRegistrados(
+      buscarProducto.value
+    );
+
+  }
+);
 
     // ==================================================
     // ACTUALIZAR REVISIÓN
