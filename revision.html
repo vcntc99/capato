@@ -830,6 +830,60 @@
         "categoriaProducto"
       );
 
+// ==================================================
+// CARGAR CATEGORÍAS
+// ==================================================
+
+async function cargarCategorias() {
+
+  const respuesta =
+    await fetch(
+      `categorias.json?t=${Date.now()}`
+    );
+
+  if (!respuesta.ok) {
+
+    throw new Error(
+      "No se pudo cargar categorias.json"
+    );
+
+  }
+
+  const categorias =
+    await respuesta.json();
+
+
+  categoriaProducto.innerHTML =
+    `
+      <option value="">
+        Seleccionar categoría
+      </option>
+    `;
+
+
+  categorias.forEach(
+    categoria => {
+
+      const opcion =
+        document.createElement(
+          "option"
+        );
+
+      opcion.value =
+        categoria;
+
+      opcion.textContent =
+        categoria;
+
+      categoriaProducto.appendChild(
+        opcion
+      );
+
+    }
+  );
+
+}
+
     const marcaProducto =
       document.getElementById(
         "marcaProducto"
