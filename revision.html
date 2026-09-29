@@ -2420,34 +2420,34 @@ function editarProducto(producto) {
 
 }
 
-        // ----------------------------------------------
-        // Crear nuevo registro
-        // ----------------------------------------------
+// ----------------------------------------------
+// Preparar producto para guardar
+// ----------------------------------------------
 
-        const nuevoProducto = {
+const productoGuardar = {
 
-          imagen:
-            archivoSeleccionado.name,
+  imagen:
+    archivoSeleccionado.name,
 
-          nombre:
-            nombre,
+  nombre:
+    nombre,
 
-          descripcion:
-            descripcion,
+  descripcion:
+    descripcion,
 
-          precio:
-            precio,
+  precio:
+    precio,
 
-          categoria:
-            categoria,
+  categoria:
+    categoria,
 
-          marca:
-            marca,
+  marca:
+    marca,
 
-          codigo:
-            codigo
+  codigo:
+    codigo
 
-        };
+};
 
 
         // ----------------------------------------------
@@ -2455,15 +2455,18 @@ function editarProducto(producto) {
         // ----------------------------------------------
 
         const confirmar =
-          confirm(
-            `¿Guardar este producto?\n\n` +
-            `Imagen: ${nuevoProducto.imagen}\n` +
-            `Nombre: ${nuevoProducto.nombre}\n` +
-            `Precio: $${nuevoProducto.precio.toFixed(2)}\n` +
-            `Categoría: ${nuevoProducto.categoria}\n` +
-            `Código: ${nuevoProducto.codigo}`
-          );
+  confirm(
+    `${productoEditando
+      ? "¿Guardar los cambios de este producto?"
+      : "¿Guardar este producto?"
+    }\n\n` +
 
+    `Imagen: ${productoGuardar.imagen}\n` +
+    `Nombre: ${productoGuardar.nombre}\n` +
+    `Precio: $${productoGuardar.precio.toFixed(2)}\n` +
+    `Categoría: ${productoGuardar.categoria}\n` +
+    `Código: ${productoGuardar.codigo}`
+  );
 
         if (!confirmar) {
 
@@ -2485,16 +2488,46 @@ function editarProducto(producto) {
 
         try {
 
-          // --------------------------------------------
-          // Agregar producto al arreglo
-          // --------------------------------------------
+// --------------------------------------------
+// Agregar o modificar producto en el arreglo
+// --------------------------------------------
 
-          const productosActualizados =
-            [
-              ...productos,
-              nuevoProducto
-            ];
+let productosActualizados;
 
+if (productoEditando) {
+
+  // Estamos editando un producto existente
+
+  productosActualizados =
+    productos.map(
+      producto => {
+
+        if (
+          producto ===
+          productoEditando
+        ) {
+
+          return productoGuardar;
+
+        }
+
+        return producto;
+
+      }
+    );
+
+}
+else {
+
+  // Estamos agregando un producto nuevo
+
+  productosActualizados =
+    [
+      ...productos,
+      productoGuardar
+    ];
+
+}
 
           // --------------------------------------------
           // Convertir a JSON
@@ -2541,8 +2574,10 @@ function editarProducto(producto) {
                 body:
                   JSON.stringify({
 
-                    message:
-                      `Agregar producto ${nuevoProducto.codigo}`,
+                   message:
+  productoEditando
+    ? `Editar producto ${productoGuardar.codigo}`
+    : `Agregar producto ${productoGuardar.codigo}`,
 
                     content:
                       contenidoBase64,
@@ -2586,12 +2621,12 @@ function editarProducto(producto) {
             "✓ Producto guardado correctamente en GitHub.";
 
 
-          // Actualizar datos locales
+// --------------------------------------------
+// Actualizar datos locales
+// --------------------------------------------
 
-          productos.push(
-            nuevoProducto
-          );
-
+productos =
+  productosActualizados;
 
           shaProductos =
             (
@@ -2611,6 +2646,14 @@ function editarProducto(producto) {
 
               archivoSeleccionado =
                 null;
+              productoEditando =
+  null;
+
+tituloFormulario.textContent =
+  "Agregar producto";
+
+guardarProducto.textContent =
+  "Guardar producto";
 
               await revisarCatalogo();
 
