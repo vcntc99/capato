@@ -2359,22 +2359,19 @@ function editarProducto(producto) {
         // Comprobar código duplicado
         // ----------------------------------------------
 
-        const codigoExiste =
+       const codigoExiste =
   productos.some(
     producto => {
 
       // Si estamos editando,
-      // ignorar el propio producto.
-
+      // ignorar el registro de la misma imagen.
       if (
         productoEditando &&
-        producto === productoEditando
+        producto.imagen ===
+        productoEditando.imagen
       ) {
-
         return false;
-
       }
-
 
       return (
         String(producto.codigo)
