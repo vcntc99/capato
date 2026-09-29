@@ -1563,8 +1563,7 @@ function crearTarjetaProducto(
   if (archivo) {
 
     imagen.src =
-      archivo.download_url;
-
+      `https://raw.githubusercontent.com/${usuario}/${repo}/${rama}/${archivo.path}`;
   }
   else {
 
@@ -1838,8 +1837,7 @@ function crearTarjetaProducto(
   if (archivo) {
 
     imagen.src =
-      archivo.download_url;
-
+      `https://raw.githubusercontent.com/${usuario}/${repo}/${rama}/${archivo.path}`;
   }
   else {
 
