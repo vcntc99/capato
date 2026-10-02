@@ -403,5 +403,14 @@
     "categoria": "Accesorios Mascota",
     "marca": "PARAPET",
     "codigo": "RENT-0915"
+  },
+  {
+    "imagen": "0920 ropa mascota.jpeg",
+    "nombre": "Vestido para Mascota con Correa",
+    "descripcion": "Bonito vestido para mascota en color morado, con detalles decorativos y falda de tul. Incluye correa a juego con gancho metálico, ideal para paseos y ocasiones especiales.\n🐶🐱 Para mascotas pequeñas\n👗 Diseño decorativo y elegante\n🎀 Adorno de moño\n✨ Detalles decorativos brillantes\n🦮 Incluye correa a juego\nIdeal para darle un toque especial a tu mascota durante paseos, sesiones de fotos o celebraciones.",
+    "precio": 150,
+    "categoria": "Accesorios Mascota",
+    "marca": "GENÉRICO",
+    "codigo": "RENT-0920"
   }
 ]
