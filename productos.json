@@ -394,5 +394,14 @@
     "categoria": "Accesorios Mascota",
     "marca": "YONGLE",
     "codigo": "RENT-0905"
+  },
+  {
+    "imagen": "0915 pechera mascota.jpeg",
+    "nombre": "Pechera Ajustable para Perro",
+    "descripcion": "Pechera para mascota con diseño cómodo y ajustable, ideal para paseos diarios. Cuenta con correas ajustables y argolla metálica para colocar la correa.\n🐶 Ideal para perros\n🦮 Para paseos y caminatas\n📏 Correas ajustables\n🔗 Argolla metálica para correa\n💪 Diseño resistente y cómodo\n❤️ Color rojo con detalles negros",
+    "precio": 150,
+    "categoria": "Accesorios Mascota",
+    "marca": "PARAPET",
+    "codigo": "RENT-0915"
   }
 ]
