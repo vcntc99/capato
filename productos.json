@@ -421,5 +421,14 @@
     "categoria": "Accesorios Mascota",
     "marca": "PARAPET",
     "codigo": "RENT-0930"
+  },
+  {
+    "imagen": "0935 cepillo mascota.jpeg",
+    "nombre": "Cepillo Removedor de Pelo para Perros y Gatos",
+    "descripcion": "Cepillo para el cuidado del pelaje de perros y gatos. Sus púas metálicas ayudan a retirar pelo suelto y desenredar el pelaje, manteniendo a tu mascota limpia y arreglada.\n🐶🐱 Para perros y gatos\n🪮 Púas metálicas\n✨ Ayuda a retirar pelo suelto\n🧹 Ideal para el cepillado y cuidado del pelaje\n🖐️ Mango cómodo para facilitar su uso",
+    "precio": 45,
+    "categoria": "Accesorios Mascota",
+    "marca": "DOG´S FRIEND",
+    "codigo": "RENT-0935"
   }
 ]
