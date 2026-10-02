@@ -448,5 +448,14 @@
     "categoria": "Accesorios Mascota",
     "marca": "NOBLEZA",
     "codigo": "RENT-0950"
+  },
+  {
+    "imagen": "0960 Correa para perro.jpeg",
+    "nombre": "Correa para Perro de Cuerda Trenzada",
+    "descripcion": "Correa para perro fabricada con cuerda trenzada, resistente y flexible. Cuenta con mosquetón metálico de enganche rápido para sujetarla al collar o arnés. Disponible en diferentes combinaciones de colores.\n🐶 Para perros\n🪢 Cuerda trenzada\n🔗 Mosquetón metálico\n💪 Resistente y flexible\n🎨 Varios colores",
+    "precio": 50,
+    "categoria": "Accesorios Mascota",
+    "marca": "NOBLEZA",
+    "codigo": "RENT-0960"
   }
 ]
