@@ -304,5 +304,14 @@
     "categoria": "Hogar",
     "marca": "YONGLE",
     "codigo": "EST3 - 2359"
+  },
+  {
+    "imagen": "1782 - Tortillero.jpeg",
+    "nombre": "Tortillero Redondo con Tapa",
+    "descripcion": "Tortillero redondo de plástico con tapa, ideal para conservar y servir tortillas en la mesa. Su diseño compacto permite mantener las tortillas protegidas y presentarlas de manera práctica.\n🍽️ Ideal para uso en la mesa\n🫓 Para conservar tortillas\n🔒 Incluye tapa\n🧼 Fácil de limpiar\n🏠 Diseño práctico y compacto",
+    "precio": 50,
+    "categoria": "Accesorios Cocina",
+    "marca": "TOROSQUI",
+    "codigo": "EST3-1782"
   }
 ]
