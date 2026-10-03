@@ -520,5 +520,14 @@
     "categoria": "Accesorios Computadora",
     "marca": "1HORA",
     "codigo": "ESQ1-1470"
+  },
+  {
+    "imagen": "1480 extensor.jpeg",
+    "nombre": "Extensor HDMI por Cable de Red RJ45",
+    "descripcion": "Extensor HDMI que permite transmitir la señal de video a través de un cable de red CAT6/CAT6E. Cuenta con conectores HDMI y RJ45, sin necesidad de una fuente de alimentación adicional según el empaque.\n📺 Extiende señal HDMI\n🔌 Conexión mediante cable de red CAT6/CAT6E\n🖥️ Soporta Full HD 1080p\n🎞️ Compatible con señal 3D\n📡 Soporta HDMI 2.0\n🟢 Soporta resoluciones indicadas de hasta 4K y 2K",
+    "precio": 240,
+    "categoria": "Accesorios Computadora",
+    "marca": "GENÉRICO",
+    "codigo": "ESQ1-1480"
   }
 ]
