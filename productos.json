@@ -502,5 +502,14 @@
     "categoria": "Accesorios Computadora",
     "marca": "EVA-Y",
     "codigo": "ESQ1-1450"
+  },
+  {
+    "imagen": "1460 - teclado.jpeg",
+    "nombre": "Teclado Bluetooth recargable",
+    "descripcion": "Teclado inalámbrico con conexión Bluetooth, batería recargable y retroiluminación. Su diseño compacto permite utilizarlo con diferentes dispositivos compatibles con Bluetooth. La caja indica hasta 150 horas de uso sin retroiluminación y aproximadamente 3 horas con retroiluminación.\n🔵 Conexión Bluetooth\n🔋 Batería recargable\n💡 Retroiluminación\n⌨️ Diseño compacto\n📱 Compatible con dispositivos Bluetooth",
+    "precio": 150,
+    "categoria": "Accesorios Computadora",
+    "marca": "GENÉRICO",
+    "codigo": "ESQ1-1460"
   }
 ]
