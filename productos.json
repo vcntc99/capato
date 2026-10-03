@@ -484,5 +484,14 @@
     "categoria": "Accesorios Cocina",
     "marca": "YONGLE",
     "codigo": "EST3-1796"
+  },
+  {
+    "imagen": "1490 - case DD.jpeg",
+    "nombre": "Carcasa para disco duro o SSD",
+    "descripcion": "Carcasa externa para discos duros y unidades SSD SATA de 2.5\". Permite conectar la unidad a una computadora mediante USB 3.0 para utilizarla como almacenamiento externo. Compatible con protocolo UASP y función de suspensión automática.\n💾 Compatible con HDD/SSD SATA de 2.5\"\n🔌 USB 3.0\n⚡ SATA III hasta 6 Gb/s\n🚀 Compatible con UASP\n💽 Capacidad máxima indicada: hasta 2 TB",
+    "precio": 140,
+    "categoria": "Accesorios Computadora",
+    "marca": "ADWEIXUN",
+    "codigo": "ESQ1-1490"
   }
 ]
