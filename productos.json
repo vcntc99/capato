@@ -700,5 +700,14 @@
     "categoria": "Juguetes",
     "marca": "GENÉRICA",
     "codigo": "REPFRON-0400"
+  },
+  {
+    "imagen": "0401 - muñeca.jpeg",
+    "nombre": "👶 Muñeca Bebé con Sonido y Accesorios",
+    "descripcion": "¡Una adorable compañera para llenar de imaginación y diversión los momentos de juego! 💕 Esta muñeca tipo bebé tiene cabello largo rubio claro, ojos azules y un bonito vestido en tonos rosa y blanco. Su diseño tierno invita a las pequeñas a crear sus propias historias, cuidar a su muñeca y disfrutar del juego de imitación.\n🔊 Emite sonido al presionarla, haciendo la experiencia de juego aún más entretenida. Además, incluye un 🪮 peine para que puedan peinar y arreglar su cabello.\n👶 Diseño tipo bebé · 🔊 Función de sonido · 🪮 Peine incluido · 👗 Vestido rosa estampado · 👱‍♀️ Cabello rubio · 💕 Ideal para juegos de imaginación",
+    "precio": 300,
+    "categoria": "Juguetes",
+    "marca": "TIN TON TOYS",
+    "codigo": "REPFRON-0401"
   }
 ]
