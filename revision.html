@@ -2291,7 +2291,7 @@ ayudaNombreArchivo.textContent =
         
         const nombreArchivoNuevo =
           archivoProducto.value.trim();
-
+        
 // ----------------------------------------------
 // Validar nombre del archivo
 // ----------------------------------------------
@@ -2305,6 +2305,11 @@ if (!nombreArchivoNuevo) {
 
 }
 
+
+// ----------------------------------------------
+// Caracteres no permitidos
+// ----------------------------------------------
+
 if (
   /[\\/:*?"<>|]/.test(
     nombreArchivoNuevo
@@ -2315,6 +2320,68 @@ if (
     "El nombre del archivo contiene caracteres no permitidos.";
 
   return;
+
+}
+
+
+// ----------------------------------------------
+// Validar extensión
+// ----------------------------------------------
+
+const extensionesPermitidas = [
+  "jpg",
+  "jpeg",
+  "png",
+  "gif",
+  "webp"
+];
+
+const extensionNueva =
+  nombreArchivoNuevo
+    .split(".")
+    .pop()
+    .toLowerCase();
+
+
+if (
+  !extensionesPermitidas.includes(
+    extensionNueva
+  )
+) {
+
+  mensajeFormulario.textContent =
+    "La extensión debe ser JPG, JPEG, PNG, GIF o WEBP.";
+
+  return;
+
+}
+
+
+// ----------------------------------------------
+// Si estamos editando,
+// conservar la extensión original
+// ----------------------------------------------
+
+if (productoEditando) {
+
+  const extensionOriginal =
+    productoEditando.imagen
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+
+  if (
+    extensionNueva !==
+    extensionOriginal
+  ) {
+
+    mensajeFormulario.textContent =
+      `Conserva la extensión original (.${extensionOriginal}).`;
+
+    return;
+
+  }
 
 }
 
