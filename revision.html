@@ -2927,6 +2927,32 @@ setTimeout(
   },
   1200
 );
+        }
+        catch (error) {
+
+          console.error(
+            "Error al guardar el producto:",
+            error
+          );
+
+          mensajeFormulario.textContent =
+            "Error: " +
+            error.message;
+
+        }
+        finally {
+
+          guardarProducto.disabled =
+            false;
+
+          cancelarFormulario.disabled =
+            false;
+
+        }
+
+      }
+    );
+          
           
 // ==================================================
 // BUSCAR PRODUCTOS
