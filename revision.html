@@ -2066,15 +2066,17 @@ ayudaNombreArchivo.textContent =
         // Comprobar selección
         // ----------------------------------------------
 
-        if (!archivoSeleccionado) {
+        if (
+  !archivoSeleccionado &&
+  !productoEditando
+) {
 
-          mensajeFormulario.textContent =
-            "Selecciona una imagen.";
+  mensajeFormulario.textContent =
+    "Selecciona una imagen.";
 
-          return;
+  return;
 
-        }
-
+}
 
         // ----------------------------------------------
         // Obtener datos
@@ -2240,13 +2242,13 @@ const codigoExiste =
         // Comprobar nuevamente el nombre de imagen
         // ----------------------------------------------
 
-        if (!productoEditando) {
+      if (!productoEditando) {
 
   const imagenExiste =
     productos.some(
       producto =>
         producto.imagen ===
-        archivoSeleccionado.name
+        nombreArchivoNuevo
     );
 
 
