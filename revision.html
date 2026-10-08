@@ -2412,6 +2412,46 @@ if (
   }
 
 }
+        
+// ----------------------------------------------
+// Comprobar nombre registrado en productos.json
+// ----------------------------------------------
+
+const nombreRegistrado =
+  productos.some(
+    producto => {
+
+      // Si estamos editando,
+      // ignorar el registro actual.
+
+      if (
+        productoEditando &&
+        producto.imagen ===
+        productoEditando.imagen
+      ) {
+
+        return false;
+
+      }
+
+      return (
+        producto.imagen ===
+        nombreArchivoNuevo
+      );
+
+    }
+  );
+
+
+if (nombreRegistrado) {
+
+  mensajeFormulario.textContent =
+    "⚠️ Ese nombre de archivo ya está registrado en productos.json.";
+
+  return;
+
+}
+       
         // ----------------------------------------------
         // Validar obligatorios
         // ----------------------------------------------
@@ -2588,11 +2628,52 @@ imagen:
         try {
 
 // --------------------------------------------
+// Preparar posible renombrado de imagen
+// --------------------------------------------
+
+let imagenRenombrada = false;
+
+let shaImagenOriginal = null;
+
+const nombreImagenOriginal =
+  productoEditando
+    ? productoEditando.imagen
+    : null;
+          
+// --------------------------------------------
 // Agregar o modificar producto en el arreglo
 // --------------------------------------------
 
 let productosActualizados;
+// --------------------------------------------
+// Si cambia el nombre,
+// crear primero la nueva imagen en GitHub
+// --------------------------------------------
 
+if (
+  productoEditando &&
+  nombreImagenOriginal !==
+  nombreArchivoNuevo
+) {
+
+  mensajeFormulario.textContent =
+    "Copiando la imagen con el nuevo nombre en GitHub...";
+
+
+  const resultadoImagen =
+    await crearImagenConNuevoNombre(
+      nombreImagenOriginal,
+      nombreArchivoNuevo
+    );
+
+
+  imagenRenombrada = true;
+
+  shaImagenOriginal =
+    resultadoImagen.shaOriginal;
+
+}
+          
 if (productoEditando) {
 
   // Estamos editando un producto existente
