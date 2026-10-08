@@ -2892,7 +2892,42 @@ else {
     "✓ Producto guardado correctamente en GitHub.";
 
 }
+// ==================================================
+// Cerrar formulario después
+// de un momento
+// ==================================================
 
+setTimeout(
+  async () => {
+
+    formularioProducto.classList.remove(
+      "visible"
+    );
+
+    archivoSeleccionado =
+      null;
+
+    productoEditando =
+      null;
+
+    tituloFormulario.textContent =
+      "Agregar producto";
+
+    guardarProducto.textContent =
+      "Guardar producto";
+
+    archivoProducto.readOnly =
+      true;
+
+    ayudaNombreArchivo.textContent =
+      "El nombre del archivo no se puede modificar al agregar un producto.";
+
+    await revisarCatalogo();
+
+  },
+  1200
+);
+          
 // ==================================================
 // BUSCAR PRODUCTOS
 // ==================================================
