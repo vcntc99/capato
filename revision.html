@@ -2593,26 +2593,30 @@ imagen:
         // Confirmación
         // ----------------------------------------------
 
-        const confirmar =
+const confirmar =
   confirm(
     `${productoEditando
       ? "¿Guardar los cambios de este producto?"
       : "¿Guardar este producto?"
     }\n\n` +
 
-    `Imagen: ${productoGuardar.imagen}\n` +
+    (
+      productoEditando &&
+      productoEditando.imagen !==
+      nombreArchivoNuevo
+        ? `Imagen:\nANTES: ${productoEditando.imagen}\nAHORA: ${nombreArchivoNuevo}\n\n`
+        : `Imagen: ${nombreArchivoNuevo}\n`
+    ) +
+
     `Nombre: ${productoGuardar.nombre}\n` +
     `Precio: $${productoGuardar.precio.toFixed(2)}\n` +
     `Categoría: ${productoGuardar.categoria}\n` +
     `Código: ${productoGuardar.codigo}`
   );
 
-        if (!confirmar) {
-
-          return;
-
-        }
-
+if (!confirmar) {
+  return;
+}
 
         guardarProducto.disabled =
           true;
