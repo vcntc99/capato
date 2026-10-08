@@ -1178,6 +1178,194 @@ catch (error) {
 
       };
 
+// ==================================================
+// FUNCIONES PARA RENOMBRAR IMÁGENES EN GITHUB
+// ==================================================
+
+function urlArchivoGitHub(nombreArchivo) {
+
+  return (
+    `https://api.github.com/repos/` +
+    `${usuario}/${repo}/contents/` +
+    `${encodeURIComponent(carpeta)}/` +
+    `${encodeURIComponent(nombreArchivo)}` +
+    `?ref=${rama}`
+  );
+
+}
+
+
+async function obtenerImagenGitHub(nombreArchivo) {
+
+  const respuesta =
+    await fetch(
+      urlArchivoGitHub(nombreArchivo),
+      {
+        method: "GET",
+
+        headers:
+          encabezadosGitHub(),
+
+        cache: "no-store"
+      }
+    );
+
+
+  if (!respuesta.ok) {
+
+    const errorGitHub =
+      await respuesta.json()
+        .catch(() => null);
+
+
+    throw new Error(
+      errorGitHub?.message ||
+      `No se pudo obtener la imagen "${nombreArchivo}".`
+    );
+
+  }
+
+
+  return await respuesta.json();
+
+}
+
+
+async function crearImagenConNuevoNombre(
+  nombreOriginal,
+  nombreNuevo
+) {
+
+  const archivoOriginal =
+    await obtenerImagenGitHub(
+      nombreOriginal
+    );
+
+
+  const contenidoBase64 =
+    archivoOriginal.content
+      .replace(/\s/g, "");
+
+
+  const respuesta =
+    await fetch(
+      urlArchivoGitHub(nombreNuevo),
+      {
+
+        method: "PUT",
+
+        headers: {
+
+          ...encabezadosGitHub(),
+
+          "Content-Type":
+            "application/json"
+
+        },
+
+        body:
+          JSON.stringify({
+
+            message:
+              `Renombrar imagen ${nombreOriginal} a ${nombreNuevo}`,
+
+            content:
+              contenidoBase64,
+
+            branch:
+              rama
+
+          })
+
+      }
+    );
+
+
+  if (!respuesta.ok) {
+
+    const errorGitHub =
+      await respuesta.json()
+        .catch(() => null);
+
+
+    throw new Error(
+      errorGitHub?.message ||
+      `No se pudo crear "${nombreNuevo}" en GitHub.`
+    );
+
+  }
+
+
+  return {
+
+    shaOriginal:
+      archivoOriginal.sha,
+
+    respuesta:
+      await respuesta.json()
+
+  };
+
+}
+
+
+async function eliminarImagenGitHub(
+  nombreArchivo,
+  shaArchivo
+) {
+
+  const respuesta =
+    await fetch(
+      urlArchivoGitHub(nombreArchivo),
+      {
+
+        method: "DELETE",
+
+        headers: {
+
+          ...encabezadosGitHub(),
+
+          "Content-Type":
+            "application/json"
+
+        },
+
+        body:
+          JSON.stringify({
+
+            message:
+              `Eliminar imagen antigua ${nombreArchivo}`,
+
+            sha:
+              shaArchivo,
+
+            branch:
+              rama
+
+          })
+
+      }
+    );
+
+
+  if (!respuesta.ok) {
+
+    const errorGitHub =
+      await respuesta.json()
+        .catch(() => null);
+
+
+    throw new Error(
+      errorGitHub?.message ||
+      `No se pudo eliminar "${nombreArchivo}".`
+    );
+
+  }
+
+
+  return await respuesta.json();
+
+}
     }
 
 function decodificarBase64(base64) {
