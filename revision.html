@@ -2779,27 +2779,57 @@ else {
           // Comprobar resultado
           // --------------------------------------------
 
-          if (!respuesta.ok) {
+         if (!respuesta.ok) {
 
-            const errorGitHub =
-              await respuesta.json()
-                .catch(() => null);
-
-
-            throw new Error(
-              errorGitHub?.message ||
-              `GitHub respondió ${respuesta.status}`
-            );
-
-          }
+  const errorGitHub =
+    await respuesta.json()
+      .catch(() => null);
 
 
-          // --------------------------------------------
-          // Éxito
-          // --------------------------------------------
+  // Si ya creamos la imagen nueva,
+  // eliminarla para dejar todo como estaba.
 
-          mensajeFormulario.textContent =
-            "✓ Producto guardado correctamente en GitHub.";
+  if (imagenRenombrada) {
+
+    try {
+
+      const nuevaImagenGitHub =
+        await obtenerImagenGitHub(
+          nombreArchivoNuevo
+        );
+
+
+      await eliminarImagenGitHub(
+        nombreArchivoNuevo,
+        nuevaImagenGitHub.sha
+      );
+
+    }
+    catch (errorLimpieza) {
+
+      console.warn(
+        "No se pudo eliminar la nueva imagen:",
+        errorLimpieza
+      );
+
+    }
+
+  }
+
+
+  throw new Error(
+    errorGitHub?.message ||
+    `GitHub respondió ${respuesta.status}`
+  );
+
+}
+                    
+// --------------------------------------------
+// Leer respuesta de GitHub una sola vez
+// --------------------------------------------
+
+const datosRespuesta =
+  await respuesta.json();
 
 
 // --------------------------------------------
@@ -2809,63 +2839,55 @@ else {
 productos =
   productosActualizados;
 
-          shaProductos =
-            (
-              await respuesta.json()
-            ).content.sha;
+shaProductos =
+  datosRespuesta.content.sha;
 
 
-          // Cerrar formulario después
-          // de un momento
+// --------------------------------------------
+// Eliminar imagen antigua
+// --------------------------------------------
 
-          setTimeout(
-            async () => {
+if (
+  imagenRenombrada &&
+  shaImagenOriginal
+) {
 
-              formularioProducto.classList.remove(
-                "visible"
-              );
+  mensajeFormulario.textContent =
+    "Eliminando la imagen antigua de GitHub...";
 
-              archivoSeleccionado =
-                null;
-              productoEditando =
-  null;
 
-tituloFormulario.textContent =
-  "Agregar producto";
+  try {
 
-guardarProducto.textContent =
-  "Guardar producto";
-
-              await revisarCatalogo();
-
-            },
-            1200
-          );
-
-        }
-
-        catch (error) {
-
-          console.error(error);
-
-          mensajeFormulario.textContent =
-            "❌ No se pudo guardar: " +
-            error.message;
-
-        }
-
-        finally {
-
-          guardarProducto.disabled =
-            false;
-
-          cancelarFormulario.disabled =
-            false;
-
-        }
-
-      }
+    await eliminarImagenGitHub(
+      nombreImagenOriginal,
+      shaImagenOriginal
     );
+
+
+    mensajeFormulario.textContent =
+      "✓ Producto e imagen actualizados correctamente en GitHub.";
+
+  }
+  catch (errorEliminar) {
+
+    console.warn(
+      "No se pudo eliminar la imagen antigua:",
+      errorEliminar
+    );
+
+
+    mensajeFormulario.textContent =
+      "✓ Producto actualizado, pero no se pudo eliminar la imagen antigua. Revisa revision.html.";
+
+  }
+
+}
+else {
+
+  mensajeFormulario.textContent =
+    "✓ Producto guardado correctamente en GitHub.";
+
+}
 
 // ==================================================
 // BUSCAR PRODUCTOS
