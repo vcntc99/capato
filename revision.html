@@ -391,6 +391,13 @@
 
     }
 
+  #ayudaNombreArchivo {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.4;
+}
 
     #mensajeFormulario {
 
@@ -984,7 +991,12 @@ const contadorProductos =
       document.getElementById(
         "archivoProducto"
       );
-
+    
+const ayudaNombreArchivo =
+  document.getElementById(
+    "ayudaNombreArchivo"
+  );
+    
     const nombreProducto =
       document.getElementById(
         "nombreProducto"
@@ -1907,6 +1919,10 @@ function editarProducto(producto) {
   mensajeFormulario.textContent =
     "";
 
+  archivoProducto.readOnly = false;
+
+ayudaNombreArchivo.textContent =
+  "Puedes modificar el nombre del archivo. Al guardar, también se actualizará productos.json.";
 
   // ----------------------------------------------
   // Mostrar formulario
@@ -1953,10 +1969,16 @@ function editarProducto(producto) {
 
 
       // El nombre viene directamente
-      // de GitHub y no se puede modificar.
+// de GitHub y no se puede modificar
+// al crear un producto nuevo.
 
-      archivoProducto.value =
-        file.name;
+archivoProducto.value =
+  file.name;
+
+archivoProducto.readOnly = true;
+
+ayudaNombreArchivo.textContent =
+  "El nombre del archivo no se puede modificar al agregar un producto.";
 
 
       // Limpiar formulario
@@ -2023,7 +2045,11 @@ function editarProducto(producto) {
 
     guardarProducto.textContent =
       "Guardar producto";
-        
+
+    archivoProducto.readOnly = true;
+
+    ayudaNombreArchivo.textContent =
+     "El nombre del archivo no se puede modificar al agregar un producto.";
       }
     );
 
@@ -2071,8 +2097,63 @@ function editarProducto(producto) {
 
         const codigo =
           codigoProducto.value.trim();
+        
+        const nombreArchivoNuevo =
+          archivoProducto.value.trim();
 
+// ----------------------------------------------
+// Validar nombre del archivo
+// ----------------------------------------------
 
+if (!nombreArchivoNuevo) {
+
+  mensajeFormulario.textContent =
+    "El nombre del archivo no puede estar vacío.";
+
+  return;
+
+}
+
+if (
+  /[\\/:*?"<>|]/.test(
+    nombreArchivoNuevo
+  )
+) {
+
+  mensajeFormulario.textContent =
+    "El nombre del archivo contiene caracteres no permitidos.";
+
+  return;
+
+}
+
+// ----------------------------------------------
+// Comprobar nombre de imagen duplicado
+// ----------------------------------------------
+
+if (
+  productoEditando &&
+  nombreArchivoNuevo !==
+  productoEditando.imagen
+) {
+
+  const archivoConEseNombre =
+    archivosImagenes.some(
+      file =>
+        file.name ===
+        nombreArchivoNuevo
+    );
+
+  if (archivoConEseNombre) {
+
+    mensajeFormulario.textContent =
+      "⚠️ Ya existe una imagen con ese nombre en GitHub.";
+
+    return;
+
+  }
+
+}
         // ----------------------------------------------
         // Validar obligatorios
         // ----------------------------------------------
@@ -2186,8 +2267,8 @@ const codigoExiste =
 
 const productoGuardar = {
 
-  imagen:
-    archivoSeleccionado.name,
+imagen:
+  nombreArchivoNuevo,
 
   nombre:
     nombre,
