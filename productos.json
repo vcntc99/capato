@@ -1168,5 +1168,14 @@
     "categoria": "Accesorios Personales",
     "marca": "GENERICA",
     "codigo": "REJA4-2175"
+  },
+  {
+    "imagen": "1120 - cargador CC.jpeg",
+    "nombre": "Cargador rápido 20W iHORA con cable USB-C ⚡",
+    "descripcion": "Descripción: 🔋 ¡Mantén tus dispositivos listos para acompañarte durante todo el día! Este cargador iHORA de 20W combina un diseño compacto en color blanco con tecnología GaN, ideal para cargar tus dispositivos compatibles de forma práctica. Incluye cable USB-C y ofrece una excelente opción para tu hogar, oficina o viajes. 📱✨\n✨ Características:\n- ⚡ Potencia de 20W: ideal para la carga de dispositivos compatibles.\n- 🚀 Tecnología GaN: diseño moderno que favorece un cargador compacto.\n- 🔌 Conexión USB-C: puerto de salida USB-C para dispositivos compatibles.\n- 🔋 Carga rápida: admite distintos perfiles de voltaje y corriente, según las especificaciones del empaque.\n- 🤍 Diseño elegante: acabado blanco que combina con tus accesorios.\n- 🎒 Fácil de transportar: práctico para llevar en la mochila, bolso o equipaje.\n- 📦 Incluye cable USB-C: presentado en el empaque junto con el cargador.",
+    "precio": 110,
+    "categoria": "Accesorios Teléfono",
+    "marca": "IHORA",
+    "codigo": "REJ1-1120"
   }
 ]
