@@ -1186,5 +1186,14 @@
     "categoria": "Accesorios Teléfono",
     "marca": "IHORA",
     "codigo": "REJ1-1122"
+  },
+  {
+    "imagen": "1123 - solo cargador C.jpeg",
+    "nombre": "Cargador rápido USB-C PD 30W 1Hora",
+    "descripcion": "⚡ ¡Dale energía a tus dispositivos con un cargador compacto y práctico! El cargador 1Hora ofrece tecnología Power Delivery (PD) de hasta 30 W, ideal para mantener tus dispositivos compatibles listos para acompañarte durante el día. Su diseño en color negro es discreto y moderno, perfecto para casa, la oficina o tus viajes.\n⚡ Carga rápida: potencia máxima de 30 W.\n🔌 Conector USB-C: puerto para conectar un cable compatible.\n📱 Tecnología Power Delivery (PD): permite carga rápida en dispositivos compatibles.\n🛡️ Diseño compacto y resistente: formato práctico para el uso diario.\n🖤 Color: negro.\n🔋 Salida: 5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 2.5 A, 15 V ⎓ 2 A y 20 V ⎓ 1.5 A, según el empaque.\n🔌 Entrada: 100–240 V, 50/60 Hz, 0.8 A máximo.\nno incluye cable",
+    "precio": 125,
+    "categoria": "Accesorios Teléfono",
+    "marca": "1HORA",
+    "codigo": "REJ1-1123"
   }
 ]
